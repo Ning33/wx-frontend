@@ -1,0 +1,5 @@
+<input class="weui-cell" type="text" value="{{name}}" placeholder="请输入姓名" bindinput="handleInput" data-field="name"/>
+<input class="weui-cell" type="idcard" value="{{idcard}}" placeholder="请输入公民身份证号码" bindinput="handleInput" data-field="idcard"/>
+
+<navigator url="{{'validate-face?name='+name+'&idcard='+idcard}}">
+<button class="weui-btn" type="primary">下一步</button></navigator>

@@ -1,0 +1,25 @@
+<!--pages/demo/result-success.wxml-->
+<view class="page">
+      <view class="weui-msg">
+          <view class="weui-msg__icon-area">
+              <icon type="success" size="93"></icon>
+          </view>
+          <view class="weui-msg__text-area">
+              <view class="weui-msg__title">业务申报成功</view>
+              <view class="weui-msg__desc">办理结果会在7个工作日内已短信的方式通知，请留意；亦可在<navigator class="weui-msg__link">我的事项</navigator>中参看。短信通知号码：13756668454</view>
+          </view>
+          <view class="weui-msg__opr-area">
+              <view class="weui-btn-area">
+                  <button class="weui-btn" type="primary" bindtap="handleBack">返回首页</button>
+              </view>
+          </view>
+          <view class="weui-msg__extra-area">
+              <view class="weui-footer">
+                  <view class="weui-footer__links">
+                      <navigator url="" class="weui-footer__link">底部链接文本</navigator>
+                  </view>
+                  <view class="weui-footer__text">Copyright © 2008-2016 weui.io</view>
+              </view>
+          </view>
+      </view>
+  </view>

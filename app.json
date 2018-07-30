@@ -1,0 +1,16 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/validate-face/validate-face",
+    "pages/validate-face/validate-face-input",
+    "pages/validate-face/validate-face-result",
+    "pages/demo/result-success",
+    "pages/demo/result-fail"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "东莞随身社保",
+    "navigationBarTextStyle": "black"
+  }
+}

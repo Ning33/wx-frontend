@@ -1,0 +1,69 @@
+{
+	"description": "项目配置文件。",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.0.0",
+	"appid": "wx1b023cc14a212804",
+	"projectname": "wx-frontend",
+	"isGameTourist": false,
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 2,
+			"list": [
+				{
+					"id": 0,
+					"name": "人脸识别",
+					"pathName": "pages/validate-face/validate-face-input",
+					"query": ""
+				},
+				{
+					"id": 1,
+					"name": "人脸识别结果",
+					"pathName": "pages/validate-face/validate-face",
+					"query": "idcard=420116199011214537&name=杜鹏飞",
+					"scene": "1038",
+					"referrerInfo": {
+						"appId": "wx75855cd02ed4cfb9",
+						"extraData": "{\"token\":\"{537ECF88-62E1-410E-9DF6-1BB0C4FFD4C2}\"}"
+					}
+				},
+				{
+					"id": -1,
+					"name": "成功提示",
+					"pathName": "pages/demo/result-success",
+					"query": "",
+					"scene": "1038",
+					"referrerInfo": {
+						"appId": "",
+						"extraData": "{}"
+					}
+				}
+			]
+		}
+	}
+}
