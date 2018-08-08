@@ -39,6 +39,15 @@ function customRequest(options,retryCnt=1) {
                   case responseStatus.OK:{
                     return resolve(res.data.data);
                   }
+                  // 数据校验异常，需要弹出提示信息
+                  case responseStatus.DATA_VALIDATE_EXCEPTION:{
+                    wx.showToast({
+                      title: res.data.errmsg,
+                      icon: 'none',
+                      duration: 2000
+                    });
+                    break;
+                  }
                   // 前端调用微信登录的js_code无效
                   case responseStatus.JS_CODE_INVALID:
                   // 微信登录的sessionKey已过期
@@ -60,7 +69,7 @@ function customRequest(options,retryCnt=1) {
                         const {confirm} = res;
                         if(confirm){
                           wx.navigateTo({
-                            url: '/pages/user/bind',
+                            url: '/pages/user-center/user-binder',
                           })
                         }
                       }
@@ -70,13 +79,14 @@ function customRequest(options,retryCnt=1) {
                   case responseStatus.VALIDATE_FACE_EXPIRED: {
                     const user = StorageUtil.loadUserInfo();
                     return wx.navigateTo({
-                      url: `/pages/validate-face/validate-face?name=${user.idcard}&idcard=${user.idcard}`,
+                      url: `/pages/validate-face/validate-face?name=${user.name}&idcard=${user.idcard}`,
                     });
                   }
                   default: {
                     return handleException(reject, res);
                   }
                 }
+                break;
               }
               //请求量超出限额
               case 429:
@@ -176,9 +186,9 @@ function isLogin(){
   }
 }
 
-function isBound(){
+function isBoundIdcard(){
   const userInfo = StorageUtil.loadUserInfo();
-  if(userInfo && userInfo.bound){
+  if(userInfo && userInfo.isBoundIdcard){
     return true;
   }else{
     return false;

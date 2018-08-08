@@ -1,0 +1,15 @@
+<!--pages/user-center/person-list.wxml-->
+<view class="page">
+  <view class="page__bd">
+    <view class="weui-cells weui-cells_after-title">
+        <view wx:for="{{personList}}" wx:key="{{index}}" class="weui-cell">
+            <view class="weui-cell__bd">{{item.name}}</view>
+            <view class="weui-cell__ft">{{item.idcard}}</view>
+        </view>
+    </view>
+
+    <view class="weui-btn-area">
+      <button class="weui-btn" type="primary" bindtap="handleBindPerson">添加参保人</button>
+    </view>
+  </view>
+</view>

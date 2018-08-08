@@ -1,39 +1,11 @@
 
 const USER_INFO = "userInfo";
 const VALIDATE_FACE_TOKENS = "validateFaceTokens";
-const CALLBACK_URL = "callbackUrl";
+const VALIDATE_FACE_STACK = "validateFaceStack"
 /**
  * 存储工具类
  */
 class StorageUtil {
-
-  /**
-   * 设置跨页回调
-   */
-  static saveCallbackUrl(url){
-    StorageUtil.saveToGlobal(CALLBACK_URL,url);
-  }
-
-  /**
-   * 取出跨页回调
-   */
-  static loadCallbackUrl(){
-    return StorageUtil.loadFromGlobal(CALLBACK_URL);
-  }
-
-  /**
-   * 执行跨页回调
-   */
-  static executeCallbackUrl(){
-    const url = StorageUtil.loadCallbackUrl();
-    if(url){
-      wx.redirectTo({
-        url: url,
-        success: () => { StorageUtil.saveCallbackUrl(null) }
-      })
-    }
-   
-  }
 
   /**
    * 保存用户信息

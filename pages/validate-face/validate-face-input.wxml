@@ -1,5 +1,31 @@
-<input class="weui-cell" type="text" value="{{name}}" placeholder="请输入姓名" bindinput="handleInput" data-field="name"/>
-<input class="weui-cell" type="idcard" value="{{idcard}}" placeholder="请输入公民身份证号码" bindinput="handleInput" data-field="idcard"/>
+<view class="page__bd">
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__bd">
+        <input class="weui-input" placeholder="请输入姓名" value="{{name}}" bindinput="handleInput" data-field="name"></input>
+      </view>
+    </view>
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__bd">
+        <input class="weui-input" type="idcard" placeholder="请输入姓名"  value="{{idcard}}" placeholder="请输入公民身份证号码" bindinput="handleInput" data-field="idcard"></input>
+      </view>
+    </view>
+    <view class="weui-cell weui-cell_input weui-cell_vcode">
+        <view class="weui-cell__hd">
+          <view class="weui-label">手机号码</view>
+        </view>          
+        <view class="weui-cell__bd">
+            <input class="weui-input" placeholder="请输入手机号" />
+        </view>
+        <view class="weui-cell__ft">
+            <view class="weui-vcode-btn">获取验证码</view>
+        </view>
+    </view>
 
-<navigator url="{{'validate-face?name='+name+'&idcard='+idcard}}">
-<button class="weui-btn" type="primary">下一步</button></navigator>
+  </view>
+
+  <view class="weui-btn-area">
+    <navigator url="{{'validate-face?name='+name+'&idcard='+idcard}}">
+    <button class="weui-btn" type="primary">下一步</button></navigator>
+  </view>
+</view>

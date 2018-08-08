@@ -1,4 +1,3 @@
-const {request} = require('../utils/request.js');
 const RestService = require('./RestService.js');
 
 class ValidateFaceService extends RestService{
@@ -7,7 +6,7 @@ class ValidateFaceService extends RestService{
    * 签名
    */
   signature(apiName='appauth'){
-    return request({
+    return this.request({
       urlPath: '/api/frontend/validateFace/signature',
       data: {
         apiName: apiName
@@ -19,7 +18,7 @@ class ValidateFaceService extends RestService{
    * 保存token
    */
   saveToken(token){
-    return request({
+    return this.request({
       urlPath: '/api/frontend/validateFace/saveToken',
       data: {
         token: token

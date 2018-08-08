@@ -1,2 +1,14 @@
 <!--index.wxml-->
 
+<view class="container">
+
+  <view class="userinfo">
+    <view class="userinfo-avatar">
+    <open-data type="userAvatarUrl"/>
+    </view>
+    <open-data class="userinfo-nickname" type="userNickName"/>
+  </view>
+  
+  <view class="usermotto">Hello World</view>
+  
+</view>

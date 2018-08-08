@@ -1,12 +1,20 @@
 <!--pages/validate-face/validate-face.wxml-->
+<view class="page">
+  <view class="page__bd">
+    <view style="text-align: center;margin-top: 60rpx;margin-bottom:60rpx;">
+      请先完成人脸识别实名校验
+    </view>
 
-<view style="text-align: center;margin-top: 60rpx;margin-bottom:60rpx;">
-  请先完成人脸识别实名校验
+    <view class="weui-btn-area">
+      <navigator target="miniProgram" 
+        app-id="{{targetAppid}}" 
+        version="{{targetVersion}}" 
+        extra-data="{{extraData}}">
+        <button class="weui-btn" type="primary" disabled="{{enableVaildateFace}}" loading="{{!enableValidateFace}}">人脸识别</button>
+      </navigator>
+    </view>
+  </view>
 </view>
 
-<navigator target="miniProgram" 
-  app-id="{{targetAppid}}" 
-  version="{{targetVersion}}" 
-  extra-data="{{extraData}}">
-  <button class="weui-btn" type="primary" disabled="{{enableVaildateFace}}" loading="{{!enableValidateFace}}">人脸识别</button>
-</navigator>
+
+
