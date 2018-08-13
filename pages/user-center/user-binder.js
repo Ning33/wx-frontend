@@ -1,4 +1,4 @@
-const {StorageUtil} = require('../../utils/storage.js');
+const {StorageUtil,RouterUtil} = require('../../utils/index.js');
 const {userService,personService} = require('../../cgi/index.js');
 
 Page({
@@ -7,7 +7,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    enableAutoSubmit: false,
     isSelf: true,//默认为本人
     name: '',
     idcard: '',
@@ -27,24 +26,25 @@ Page({
     
   },
 
-  onShow(){
+  /**
+   * 自定义事件，从上一页面返回
+   */
+  onNavigateBack(res){
     //如果从人脸识别界面回退，则自动点击下一步按钮
     // 判断标准：
-    // 0.允许自动提交
     // 1.人脸识别storage中有值
     // 2.表单填写完毕
     // 3.证件号码和人脸识别信息一致
-    const {enableAutoSubmit,idcard,name} = this.data;
-    if(enableAutoSubmit){
+    const { idcard, name } = this.data;
+    if(res.type === RouterUtil.navigateBackType.validateFace){
       if (idcard && name) {
         const token = StorageUtil.loadValidateFaceToken(idcard);
-        if(token){
+        if (token) {
           //自动提交,点击下一步
           this.handleSubmit();
         }
       }
     }
-    
   },
 
   handleInput: function (event) {
@@ -65,11 +65,6 @@ Page({
         icon: 'none'
       })
     }
-
-    //基础校验通过，设置允许自动提交
-    this.setData({
-      enableAutoSubmit: true
-    });
 
     //校验是否已完成人脸识别
     const token = StorageUtil.loadValidateFaceToken(idcard)

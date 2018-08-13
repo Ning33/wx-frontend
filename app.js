@@ -1,10 +1,11 @@
 //app.js
-const {request,login} = require('./utils/request.js');
+const {request} = require('./utils/index.js');
+const {login} = require('./utils/request.js');
 const {validateFace:validateFaceConfig} = require('./constant/config.js');
 
 App({
   onLaunch: function(){
-  
+    login();
   },
   onShow: function(options){
     console.log('app.onShow:', options);

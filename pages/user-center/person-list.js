@@ -1,5 +1,12 @@
 // pages/user-center/person-list.js
 const {personService} = require('../../cgi/index.js');
+const {RouterUtil} = require('../../utils/index.js');
+
+// 页面同时支持两种模式-选择、编辑
+class Mode{
+  static select = 'select';
+  static edit = 'edit';
+}
 
 Page({
 
@@ -7,13 +14,28 @@ Page({
    * 页面的初始数据
    */
   data: {
+    mode: Mode.select,
     personList: []
+  },
+
+  onLoad(options){
+    let {mode} = options;
+    //默认模式为选择
+    if (!Object.values(Mode).includes(mode)){
+      mode = Mode.select;
+    }
+
+    // 设置后续跳转
+    this.setData({
+      mode: mode
+    })
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onShow: function () {
     personService.queryList().then(personList=>{
       this.setData({
         personList: personList
@@ -21,9 +43,37 @@ Page({
     });
   },
 
+  // 添加参保人，跳转到具体的页面处理
   handleBindPerson(){
     wx.navigateTo({
       url: '/pages/user-center/user-binder?isSelf=false',
     })
+  },
+  // 点击人员列表，根据模式选择后续处理
+  handleSelectRow(event){
+    const {mode} = this.data;
+    
+    const personid = event.currentTarget.dataset.personid;
+    switch(mode){
+      // 选择参保人模式，点击跳转至后续业务,并传入personid
+      case Mode.select:{
+        //向上一页面传值
+        RouterUtil.navigateBack({
+          type: RouterUtil.navigateBackType.personSelect,
+          data: {
+            personid: personid
+          }
+        })
+        
+        break;
+      }
+      // 编辑参保人模式,点击跳转至人员详细信息页面
+      case Mode.edit:{
+        wx.navigateTo({
+          url: '/pages/user-center/person-detail?personid='+personid,
+        });
+        break;
+      }
+    }
   }
 })

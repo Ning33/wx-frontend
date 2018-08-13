@@ -5,7 +5,25 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    menuList:[
+      {
+        title: '个人信息',
+        url: '/pages/user-center/person-detail',
+        icon: '/style/images/icon-mail.png'
+      }, {
+        title: '实名认证',
+        url: '/pages/user-center/user-binder',
+        icon: '/style/images/icon-mail.png'
+      }, {
+        title: '我的事项',
+        url: '/pages/service/service-tabs',
+        icon: '/style/images/icon-mail.png'
+      }, {
+        title: '常用参保人',
+        url: '/pages/user-center/person-list?mode=edit',
+        icon: '/style/images/icon-mail.png'
+      },
+    ]
   },
 
   /**

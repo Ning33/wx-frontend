@@ -1,5 +1,5 @@
 // pages/validate-face/validate-face-result.js
-const {StorageUtil} = require('../../utils/storage.js');
+const {StorageUtil,RouterUtil} = require('../../utils/index.js');
 const {validateFaceService} = require('../../cgi/index.js');
 
 Page({
@@ -24,8 +24,6 @@ Page({
     this.setData({
       isSuccess,
       token,
-      errcode,
-      errmsg,
       idcard,
       name,
     });
@@ -48,7 +46,11 @@ Page({
       
     }else{
       //人脸失败
-      
+      this.setData({
+        isSuccess: false,
+        errcode: errcode,
+        errmsg: errmsg,
+      })
     }
   },
 
@@ -60,6 +62,8 @@ Page({
   },
 
   handleBack(){
-    wx.navigateBack();
+    RouterUtil.navigateBack({
+      type: RouterUtil.navigateBackType.validateFace
+    });
   } 
 })

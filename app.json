@@ -11,7 +11,11 @@
     "pages/service/service-tabs",
     "pages/user-center/person-detail",
     "pages/user-center/user-binder",
-    "pages/service/service-navigator"
+    "pages/service/service-navigator",
+    "pages/service/yldyhd/yldyhd-tips",
+    "pages/service/yldyhd/yldyhd-sbxx",
+    "pages/service/yldyhd/yldyhd-ffzhqr",
+    "pages/service/yldyhd/yldyhd-cbqkqr"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,7 +1,6 @@
 // pages/validate-face/validate-face.js
 const { validateFace:validateFaceConfig} = require('../../constant/config.js');
-const {request} = require('../../utils/request.js');
-const {StorageUtil} = require('../../utils/storage.js');
+const { request, StorageUtil} = require('../../utils/index.js');
 const {validateFaceService} = require('../../cgi/index.js');
 
 Page({

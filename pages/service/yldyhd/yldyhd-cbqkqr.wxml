@@ -1,0 +1,30 @@
+<!--pages/service/yldyhd/yldyhd-cbqkqr.wxml-->
+<view class="page">
+  <view class="page__bd">
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">视同缴费月数</view>
+        <view class="weui-cell__ft">{{res.stjfys}}</view>
+      </view>
+      <view class="weui-cell">
+        <view class="weui-cell__bd">实际缴费月数</view>
+        <view class="weui-cell__ft">{{res.sjjfys}}</view>
+      </view>
+      <view class="weui-cell">
+        <view class="weui-cell__bd">累计缴费月数</view>
+        <view class="weui-cell__ft">{{res.ljjfys}}</view>
+      </view>
+      <view class="weui-cell">
+        <view class="weui-cell__bd">视同账户金额</view>
+        <view class="weui-cell__ft">{{res.stzhje}}</view>
+      </view>
+      <view class="weui-cell">
+        <view class="weui-cell__bd">养老账户金额</view>
+        <view class="weui-cell__ft">{{res.ylzhje}}</view>
+      </view>
+    </view>
+    <view class="weui-btn-area">
+      <button class="weui-btn" type="primary" bindtap="handleNext">下一步</button>
+    </view>
+  </view>
+</view>

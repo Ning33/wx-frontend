@@ -7,11 +7,11 @@
           </view>
           <view class="weui-msg__text-area">
               <view class="weui-msg__title">人脸识别成功</view>
-              <view class="weui-msg__desc">请返回上一页面继续</view>
+              <view class="weui-msg__desc">请点击下一步继续</view>
           </view>
           <view class="weui-msg__opr-area">
               <view class="weui-btn-area">
-                  <button class="weui-btn" type="primary" bindtap="handleBack">返回</button>
+                  <button class="weui-btn" type="primary" bindtap="handleBack">下一步</button>
               </view>
           </view>
           <view class="weui-msg__extra-area">
