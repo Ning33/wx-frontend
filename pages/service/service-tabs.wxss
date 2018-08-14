@@ -7,7 +7,44 @@ page,
 .page__bd{
     padding-bottom: 0;
 }
-.weui-tab__content{
-    padding-top: 60px;
-    text-align: center;
+
+.weui-navbar__title{
+  font-family: "微软雅黑";
+  font-weight: bold;
+}
+/**view之间的灰色间隔*/
+.weui-interval{
+    background-color: #f2f2f2;
+    height: 10px;
+    width: 100%;
+}
+.weui-content-top{
+    display: flex;
+    align-items: center;
+    vertical-align: center;
+    font-family: "微软雅黑";
+    justify-content: space-between;
+    color: #0c0c0eb0;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: small;
+    border-bottom: solid 1px #f2f2f2;
+    height: 36px;
+}
+
+.weui-content-middle{
+    display: flex;
+    align-items: center;
+    vertical-align: center;
+    font-family: "微软雅黑";
+    justify-content: space-between;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 17px;
+    border-bottom: solid 1px #f2f2f2;
+    height: 50px;
 }

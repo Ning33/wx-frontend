@@ -1,2 +1,86 @@
-<!--pages/service/service-navigator.wxml-->
-<text>pages/service/service-navigator.wxml</text>
+<view class="page__bd">
+   <!--搜索框-->
+  <view class="weui-search-bar">
+    <view class="weui-search-bar__form">
+      <view class="weui-search-bar__box">
+        <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+        <input type="text" class="weui-search-bar__input" placeholder="请输入事项名称" value="{{searchValue}}" bindinput='searchInput'  />
+      </view>
+    </view>
+      <view class="weui-search-bar__cancel-btn" bindtap="searchConfirm">
+          <text >搜索</text>
+      </view>
+  </view>
+
+  <!--导航栏-->
+  <view>
+    <!--获取图片样式-->
+    <view class="weui-images">
+      <view wx:for="{{img_src}}" class="weui-image">
+          <image src='{{item}}' style="margin-right: 5px;vertical-align: middle;width:40px; height: 30px;"></image>
+      </view>
+    </view>
+    <!--设置tab标签-->
+    <view class="weui-tab">
+            <view class="weui-navbar">
+                <block wx:for="{{tabs}}" wx:key="*this">
+                    <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+                        <view class="weui-navbar__title" >{{item}}</view>
+                    </view>
+                </block>
+                <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+            </view>
+            <view class="weui-tab__panel">
+                <view class="weui-interval" hidden="{{searchPanl != false}}"></view>
+                <view class="weui-tab_top_content" hidden="{{searchPanl != false}}">
+                  <text style='padding-left: 17px;'>共提供{{serviceNum[activeIndex]}}项服务</text>
+                </view>
+                 <view class="weui-interval"></view>
+                <view class="weui-tab__content" hidden="{{activeIndex != 0 || searchPanl != false}}">
+                  <block wx:for="{{ZJYWitems}}" wx:key="*this">
+                    <template is="weui-service" data="{{...item}}"/>
+                  </block>
+                </view>
+                <view class="weui-tab__content" hidden="{{activeIndex != 1 || searchPanl != false}}">
+                  <block wx:for="{{YLDYitems}}" wx:key="*this">
+                    <template is="weui-service" data="{{...item}}"/>
+                  </block>
+                </view>
+                <view class="weui-tab__content" hidden="{{activeIndex != 2 || searchPanl != false}}">
+                  <block wx:for="{{GSDYitems}}" wx:key="*this">
+                    <template is="weui-service" data="{{...item}}"/>
+                  </block>
+                </view>
+                <view class="weui-tab__content" hidden="{{activeIndex != 3 || searchPanl != false}}">
+                  <block wx:for="{{SYDYitems}}" wx:key="*this">
+                    <template is="weui-service" data="{{...item}}"/>
+                  </block>
+                </view>
+                <view class="weui-tab__content" hidden="{{activeIndex != 4 || searchPanl != false}}">
+                  <block wx:for="{{YLDY_YYitems}}" wx:key="*this">
+                    <template is="weui-service" data="{{...item}}"/>
+                  </block>
+                </view>
+                <view class="weui-tab__content" hidden="{{searchPanl == false}}">
+                  <block wx:for="{{searchitems}}" wx:key="*this">
+                    <template is="weui-service" data="{{...item}}"/>
+                  </block>
+                </view>
+            </view>
+        </view>
+  </view>
+</view>
+ 
+<!--定义事项模板-->
+<template name="weui-service" >
+  <view class="weui-tab__content_lists" >
+    <view class="weui-tab__content_title" >
+      <text style='padding-left: 17px;'>{{title}}</text>
+      <image src="./navigator-images/u16.png" style="margin-right: 40rpx; width:10px; height: 15px;" ></image>
+    </view>
+    <view class="weui-tab__content_con">
+      <text style='padding-left: 17px;color:#C0C0C0; font-size: 15px;'>{{content}}</text>
+    </view>
+     <view class="weui-interval"></view>
+  </view>
+</template>
