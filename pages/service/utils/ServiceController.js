@@ -115,7 +115,13 @@ class ServiceController{
   // 执行过滤器
   handleFilters(page){
     const filters = [...this.serviceFilters];
-    
+
+      /**
+       * 内部递归函数
+       * @param {boolean} res.result 过滤器结果
+       * @param {object} res.data 过滤器传递参数
+       * @returns {Promise<res>}
+       */
     const func = (res)=>{
       const filter = filters.shift();
       return filter.doFilter(res.data).then(res => {
@@ -127,7 +133,7 @@ class ServiceController{
           // 过滤器通过，继续执行下一个
           return func(res);
       })
-    }
+    };
     
     return func({
       result:true,

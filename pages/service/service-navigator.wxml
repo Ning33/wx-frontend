@@ -73,7 +73,7 @@
  
 <!--定义事项模板-->
 <template name="weui-service" >
-  <view class="weui-tab__content_lists" >
+  <view class="weui-tab__content_lists" bindtap="handleNavigate" data-service-name="{{name}}">
     <view class="weui-tab__content_title" >
       <text style='padding-left: 17px;'>{{title}}</text>
       <image src="./navigator-images/u16.png" style="margin-right: 40rpx; width:10px; height: 15px;" ></image>

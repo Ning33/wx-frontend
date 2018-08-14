@@ -5,7 +5,7 @@ const {validateFace:validateFaceConfig} = require('./constant/config.js');
 
 App({
   onLaunch: function(){
-    login();
+    
   },
   onShow: function(options){
     console.log('app.onShow:', options);

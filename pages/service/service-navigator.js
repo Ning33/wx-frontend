@@ -1,4 +1,6 @@
-const {ServiceItems} = require("../../cgi/index.js")
+const {ServiceItems} = require("../../cgi/index.js");
+const {getController} = require('./utils/controllers.js');
+
 var sliderWidth = 96; // 需要设置slider的宽度，用于计算中间位置
 Page({
   data: {
@@ -106,6 +108,14 @@ Page({
         serviceNum: [ZJYWitems.length, YLDYitems.length, GSDYitems.length, SYDYitems.length, YLDY_YYitems.length] //计算分类后事项总数
       });
     });
+  },
+
+  handleNavigate(event){
+    console.log(event.currentTarget);
+    const target = event.currentTarget;
+    const serviceName = target.dataset.serviceName;
+    const controller = getController(serviceName);
+    controller.start();
   }
   
 })

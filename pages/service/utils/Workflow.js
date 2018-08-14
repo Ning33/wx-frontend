@@ -12,15 +12,6 @@ class Workflow {
     this.name = name;
   }
 
-  // 进入流程之后先调用此方法
-  onStart() {
-
-  }
-  // 退出此流程之前调用此方法
-  onNext() {
-
-  }
-
 }
 
 module.exports = {

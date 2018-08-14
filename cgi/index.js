@@ -9,6 +9,6 @@ module.exports = {
   validateFaceService: new ValidateFaceService(),
   personService: new PersonService(),
   userService: new UserService(),
-  ServiceItems: new ServiceItems()
+  ServiceItems: new ServiceItems(),
   yldyhdService: new YldyhdService(),
 }
