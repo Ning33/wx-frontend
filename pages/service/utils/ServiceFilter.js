@@ -1,4 +1,5 @@
 const {StorageUtil} = require('../../../utils/storage.js');
+const {login} = require('../../../utils/request.js');
 
 /**
  * 业务准入过滤器
@@ -38,7 +39,10 @@ class RealNameFilter extends ServiceFilter {
     // 获取用户信息
     const user = StorageUtil.loadUserInfo();
     if(user == null){
-      result = false;
+      //如果未获取到用户信息，则登录
+      return login().then(()=>{
+        return this.doFilter(data);
+      });
     }
     result = user.isBoundIdcard;
 
