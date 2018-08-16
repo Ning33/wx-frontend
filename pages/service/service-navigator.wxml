@@ -1,6 +1,7 @@
 <view class="page__bd">
    <!--搜索框-->
-  <view class="weui-search-bar">
+
+  <view class="weui-search-bar" id="search_height" style='height: 50px;'>
     <view class="weui-search-bar__form">
       <view class="weui-search-bar__box">
         <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
@@ -15,16 +16,16 @@
   <!--导航栏-->
   <view>
     <!--获取图片样式-->
-    <view class="weui-images">
+    <view class="weui-images" id="images_height" style='height:25px;'>
       <view wx:for="{{img_src}}" class="weui-image">
           <image src='{{item}}' style="margin-right: 5px;vertical-align: middle;width:40px; height: 30px;"></image>
       </view>
     </view>
     <!--设置tab标签-->
     <view class="weui-tab">
-            <view class="weui-navbar">
+            <view class="weui-navbar" id="navbar_height">
                 <block wx:for="{{tabs}}" wx:key="*this">
-                    <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+                    <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick" style='height: 20px;'>
                         <view class="weui-navbar__title" >{{item}}</view>
                     </view>
                 </block>
@@ -37,34 +38,46 @@
                 </view>
                  <view class="weui-interval"></view>
                 <view class="weui-tab__content" hidden="{{activeIndex != 0 || searchPanl != false}}">
-                  <block wx:for="{{ZJYWitems}}" wx:key="*this">
-                    <template is="weui-service" data="{{...item}}"/>
-                  </block>
+                  <scroll-view scroll-y style="height: {{scroll_height}}px;">
+                    <block wx:for="{{ZJYWitems}}" wx:key="*this">
+                      <template is="weui-service" data="{{...item}}"/>
+                    </block>
+                  </scroll-view>
                 </view>
                 <view class="weui-tab__content" hidden="{{activeIndex != 1 || searchPanl != false}}">
-                  <block wx:for="{{YLDYitems}}" wx:key="*this">
-                    <template is="weui-service" data="{{...item}}"/>
-                  </block>
+                  <scroll-view scroll-y style="height: {{scroll_height}}px;">
+                    <block wx:for="{{YLDYitems}}" wx:key="*this">
+                      <template is="weui-service" data="{{...item}}"/>
+                    </block>
+                  </scroll-view>
                 </view>
                 <view class="weui-tab__content" hidden="{{activeIndex != 2 || searchPanl != false}}">
-                  <block wx:for="{{GSDYitems}}" wx:key="*this">
-                    <template is="weui-service" data="{{...item}}"/>
-                  </block>
+                  <scroll-view scroll-y style="height: {{scroll_height}}px;">
+                    <block wx:for="{{GSDYitems}}" wx:key="*this">
+                      <template is="weui-service" data="{{...item}}"/>
+                    </block>
+                  </scroll-view>
                 </view>
                 <view class="weui-tab__content" hidden="{{activeIndex != 3 || searchPanl != false}}">
-                  <block wx:for="{{SYDYitems}}" wx:key="*this">
-                    <template is="weui-service" data="{{...item}}"/>
-                  </block>
+                  <scroll-view scroll-y style="height: {{scroll_height}}px;">
+                    <block wx:for="{{SYDYitems}}" wx:key="*this">
+                      <template is="weui-service" data="{{...item}}"/>
+                    </block>
+                  </scroll-view>
                 </view>
                 <view class="weui-tab__content" hidden="{{activeIndex != 4 || searchPanl != false}}">
-                  <block wx:for="{{YLDY_YYitems}}" wx:key="*this">
-                    <template is="weui-service" data="{{...item}}"/>
-                  </block>
+                  <scroll-view scroll-y style="height: {{scroll_height}}px;">
+                    <block wx:for="{{YLDY_YYitems}}" wx:key="*this">
+                      <template is="weui-service" data="{{...item}}"/>
+                    </block>
+                  </scroll-view>
                 </view>
                 <view class="weui-tab__content" hidden="{{searchPanl == false}}">
-                  <block wx:for="{{searchitems}}" wx:key="*this">
-                    <template is="weui-service" data="{{...item}}"/>
-                  </block>
+                  <scroll-view scroll-y style="height: {{scroll_height+32}}px;">
+                    <block wx:for="{{searchitems}}" wx:key="*this">
+                      <template is="weui-service" data="{{...item}}"/>
+                    </block>
+                  </scroll-view>
                 </view>
             </view>
         </view>
@@ -79,7 +92,7 @@
       <image src="./navigator-images/u16.png" style="margin-right: 40rpx; width:10px; height: 15px;" ></image>
     </view>
     <view class="weui-tab__content_con">
-      <text style='padding-left: 17px;color:#C0C0C0; font-size: 15px;'>{{content}}</text>
+      <text style='padding-left: 17px;color:#C0C0C0; font-size: 15px;'>{{description}}</text>
     </view>
      <view class="weui-interval"></view>
   </view>

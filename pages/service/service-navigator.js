@@ -1,9 +1,10 @@
-const {ServiceItems} = require("../../cgi/index.js");
+const {serviceItems} = require("../../cgi/index.js");
 const {getController} = require('./utils/controllers.js');
+let sliderWidth = 96; // 需要设置slider的宽度，用于计算中间位置
 
-var sliderWidth = 96; // 需要设置slider的宽度，用于计算中间位置
 Page({
   data: {
+    scroll_height: 450, //初始滚屏的高度
     searchitems: [], //搜索的业务
     ZJYWitems: [],  //征缴业务
     YLDYitems: [],  //养老待遇
@@ -28,6 +29,7 @@ Page({
     wx.getSystemInfo({
       success: function (res) {
         that.setData({
+          scroll_height: res.windowHeight - 185,
           sliderLeft: (res.windowWidth / that.data.tabs.length - sliderWidth) / 2,
           sliderOffset: res.windowWidth / that.data.tabs.length * that.data.activeIndex
         });
@@ -76,7 +78,7 @@ Page({
   //查询事项 并分类
   seachAllItem: function(){
     var that = this;
-    ServiceItems.queryServiceItems().then((res) => {
+    serviceItems.queryServiceItems().then((res) => {
       var data = res;
       //对查询的事项数据进行分类
       var ZJYWitems = [];
@@ -85,16 +87,16 @@ Page({
       var SYDYitems = [];
       var YLDY_YYitems = [];
       //遍历所有事项 并分类
-      for (var item of data) {
-        if (item.itemType === 1) { //属于征缴业务
+      for (let item of data) {
+        if (item.catalog === 'bxgx') { //属于征缴业务
           ZJYWitems.push(item);
-        } else if (item.itemType === 2) { //属于养老待遇
+        } else if (item.catalog === 'yldy') { //属于养老待遇
           YLDYitems.push(item);
-        } else if (item.itemType === 3) { //属于工伤待遇
+        } else if (item.catalog === 'gsdy') { //属于工伤待遇
           GSDYitems.push(item);
-        } else if (item.itemType === 4) { //属于失业待遇
+        } else if (item.catalog === 'syedy') { //属于失业待遇
           SYDYitems.push(item);
-        } else if (item.itemType === 5) { //属于医疗待遇
+        } else if (item.catalog === 'yildy') { //属于医疗待遇
           YLDY_YYitems.push(item);
         }
       }
@@ -116,6 +118,7 @@ Page({
     const serviceName = target.dataset.serviceName;
     const controller = getController(serviceName);
     controller.start();
+
   }
   
 })

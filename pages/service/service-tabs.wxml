@@ -3,7 +3,7 @@
         <view class="weui-tab">
             <view class="weui-navbar">
                 <block wx:for="{{tabs}}" wx:key="*this">
-                    <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+                    <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick" style="height:25px">
                         <view class="weui-navbar__title" >{{item}}</view>
                     </view>
                 </block>
@@ -12,13 +12,25 @@
             <view class="weui-tab__panel">
             <view class="weui-interval" ></view>
                 <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
-                  <template is="weui-has-service" />
+                  <scroll-view scroll-y style="height: {{scroll_height}}px;">
+                    <block wx:for="{{processItem}}" wx:key="*this">
+                      <template is="weui-has-service" data="{{...item}}"/>
+                    </block>
+                  </scroll-view>
                 </view>
                 <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
-                  <template is="weui-has-service" />
+                  <scroll-view scroll-y style="height: {{scroll_height}}px;">
+                    <block wx:for="{{successItem}}" wx:key="*this">
+                      <template is="weui-has-service" data="{{...item}}"/>
+                    </block>
+                  </scroll-view>
                 </view>
                 <view class="weui-tab__content" hidden="{{activeIndex != 2}}">
-                  <template is="weui-has-service" />
+                  <scroll-view scroll-y style="height: {{scroll_height}}px;">
+                    <block wx:for="{{failedItem}}" wx:key="*this">
+                      <template is="weui-has-service" data="{{...item}}"/>
+                    </block>
+                  </scroll-view>
                 </view>
             </view>
         </view>
@@ -27,19 +39,19 @@
 
 <!--定义模板-->
 <template name="weui-has-service">
-  <view class="weui-content-panel">
+  <view class="weui-content-panel" >
     <view class="weui-content-top">
-      <text>流水号:123</text> 
-      <text>李四</text> 
-      <text style='color:red;'>审批中</text>
+      <text>{{orderno}}</text> 
+      <text>{{personName}}</text> 
+      <text style="color:{{status=='21'?'#14e714':'red' }};">{{status=="10"?"审批中":status=="21"?"成功":"失败"}}</text>
     </view>
-    <view class="weui-content-middle">
-      <text>工伤补偿待遇申领</text>
+    <view class="weui-content-middle" bindtap='toDetail' id="{{orderno}}">
+      <text>{{serviceName}}</text>
       <image src="./navigator-images/u16.png" style=" width:10px; height: 15px;" ></image>
     </view>
       <view class="weui-content-top">
       <text>东莞市社会保障局</text>  
-      <text>2017-02-03 11:34:23</text>
+      <text>{{updatedTime}}</text>
     </view>
   </view>
   <view class="weui-interval" ></view>

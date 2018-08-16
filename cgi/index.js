@@ -3,12 +3,14 @@ const UserService = require('./UserService.js');
 const PersonService = require('./PersonService.js');
 const ServiceItems = require('./ServiceItems.js');
 const YldyhdService = require('./YldyhdService.js');
+const MyService = require("./MyService.js");
 
 
 module.exports = {
   validateFaceService: new ValidateFaceService(),
   personService: new PersonService(),
   userService: new UserService(),
-  ServiceItems: new ServiceItems(),
+  serviceItems: new ServiceItems(),
   yldyhdService: new YldyhdService(),
+  myService: new MyService()
 }

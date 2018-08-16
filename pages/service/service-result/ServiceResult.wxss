@@ -1,0 +1,39 @@
+/* pages/service/service-result/ServiceResult.wxss */
+.weui-orderno{
+    display: flex;
+    align-items: center;
+    vertical-align: center;
+    font-family: "微软雅黑";
+    justify-content: space-between;
+    color: #0c0c0eb0;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 100rpx;
+    background-color: #f2f2f2;
+}
+.weui-date{
+    display: flex;
+    align-items: center;
+    vertical-align: center;
+    font-family: "微软雅黑";
+    font-size: 14px;
+    justify-content: space-between;
+    color: #0c0c0eb0;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 73rpx;
+}
+/**view之间的灰色间隔*/
+.weui-interval{
+    background-color: #f2f2f2;
+    height: 10px;
+    width: 100%;
+}
+.weui-bottom{
+  color: #14e714;
+  margin: 10px 10px 13px 13px;
+  font-family: "微软雅黑";
+  font-size: small;
+  vertical-align: center;
+  text-align: center;
+}

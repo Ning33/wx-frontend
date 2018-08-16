@@ -25,10 +25,10 @@ page,
     font-family: "微软雅黑";
     justify-content: space-between;
     color: #0c0c0eb0;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-left: 10px;
-    margin-right: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
     font-size: small;
     border-bottom: solid 1px #f2f2f2;
     height: 36px;

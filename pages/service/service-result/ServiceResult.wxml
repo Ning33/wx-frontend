@@ -1,0 +1,49 @@
+<!--pages/service/service-result/ServiceResult.wxml-->
+<view class="page">
+  <view class="weui-order-date" >
+    <view class="weui-orderno">
+      <text>受理单号</text>
+      <text>{{result.orderno}}</text>
+    </view>
+
+    <view class="weui-date">
+      <text>姓名</text>
+      <text>{{result.personName}}</text>
+    </view>
+
+    <view class="weui-date">
+      <text>证件号码</text>
+      <text>{{result.personIdcard}}</text>
+    </view>
+
+    <view class="weui-date">
+      <text>事项名称</text>
+      <text style='color: #14e714;'>{{result.serviceTitle}}</text>
+    </view>
+
+    <view class="weui-date">
+      <text>业务申请日期</text>
+      <text>{{createdTime}}</text>
+    </view>
+
+    <view class="weui-date">
+      <text>办理结果</text>
+      <text style="color: {{result.status==='21'?'#14e714' :'red'}};">{{result.status==='21'?'成功':result.status==='22'?'失败':'办理中'}}</text>
+    </view>
+    <!--灰色间隔-->
+    <view class="weui-interval"></view>
+    <view class="weui-date" style='height: 85rpx;' hidden="{{result.status!=='21'}}" bindtap='showDetail'>
+      <text style='color: #14e714;font-size: 16px;'>点击查看业务办理详细信息</text>
+      <image src="../navigator-images/u16.png" style=" width:10px; height: 15px;"></image>
+    </view>
+    <!--灰色间隔-->
+    <view class="weui-interval"></view>
+    <view class="weui-bottom" >
+      <text hidden="{{result.status!=='21'}}">您的此次事项从您申办的次月的10日起按月发放至您社保卡账号，您可凭受理号或流水号到我市任意的社保业务经办大厅补打纸质的核定表和提供近期一寸彩照到前台打印退休证</text>
+      
+      <text style='color: red;' hidden="{{result.status!=='22'}}">您此次业务申请办理失败，请及时转至我市任意的社保业务经办大厅补办</text>
+
+      <text style='color: red;' hidden="{{result.status!=='10'}}">您的此次业务申请还在办理中</text>
+    </view>
+  </view>
+</view>
