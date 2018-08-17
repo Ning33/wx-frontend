@@ -77,9 +77,9 @@ function customRequest(options,retryCnt=1) {
                   }
                   // 人脸token过期,跳转至人脸识别页面
                   case responseStatus.VALIDATE_FACE_EXPIRED: {
-                    const user = StorageUtil.loadUserInfo();
+                    const {idcard,name} = res.data.data;
                     return wx.navigateTo({
-                      url: `/pages/validate-face/validate-face?name=${user.name}&idcard=${user.idcard}`,
+                      url: `/pages/validate-face/validate-face?name=${name}&idcard=${idcard}`,
                     });
                   }
                   default: {
