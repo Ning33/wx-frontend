@@ -1,4 +1,4 @@
-const { request } = require('../utils/index.js');
+const { request } = require('../utils/request.js');
 
 class RestService {
 
