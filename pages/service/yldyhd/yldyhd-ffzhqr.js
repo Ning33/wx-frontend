@@ -9,15 +9,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-    res: {
+    ffzhqr: {
 
     }
   },
 
   onLoad(options){
-    yldyhdService.queryFfzhqr(controller.serviceData.orderno).then(res=>{
+    yldyhdService.queryFfzhqr(controller.serviceData.personid).then(res=>{
       this.setData({
-        res: res
+        ffzhqr: res
       })
     });
   },

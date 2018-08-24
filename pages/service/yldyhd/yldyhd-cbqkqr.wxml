@@ -4,23 +4,27 @@
     <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell">
         <view class="weui-cell__bd">视同缴费月数</view>
-        <view class="weui-cell__ft">{{res.stjfys}}</view>
-      </view>
-      <view class="weui-cell">
-        <view class="weui-cell__bd">实际缴费月数</view>
-        <view class="weui-cell__ft">{{res.sjjfys}}</view>
-      </view>
-      <view class="weui-cell">
-        <view class="weui-cell__bd">累计缴费月数</view>
-        <view class="weui-cell__ft">{{res.ljjfys}}</view>
+        <view class="weui-cell__ft">{{cbqkqr.stjfys}}</view>
       </view>
       <view class="weui-cell">
         <view class="weui-cell__bd">视同账户金额</view>
-        <view class="weui-cell__ft">{{res.stzhje}}</view>
+        <view class="weui-cell__ft">{{cbqkqr.stzhje}}</view>
       </view>
       <view class="weui-cell">
-        <view class="weui-cell__bd">养老账户金额</view>
-        <view class="weui-cell__ft">{{res.ylzhje}}</view>
+        <view class="weui-cell__bd">实际缴费月数</view>
+        <view class="weui-cell__ft">{{cbqkqr.sjjfys}}</view>
+      </view>
+      <view class="weui-cell">
+        <view class="weui-cell__bd">实际账户金额</view>
+        <view class="weui-cell__ft">{{cbqkqr.sjzhje}}</view>
+      </view>
+      <view class="weui-cell">
+        <view class="weui-cell__bd">合计缴费月数</view>
+        <view class="weui-cell__ft">{{cbqkqr.hjjfys}}</view>
+      </view>
+      <view class="weui-cell">
+        <view class="weui-cell__bd">合计缴费金额</view>
+        <view class="weui-cell__ft">{{cbqkqr.hjjfje}}</view>
       </view>
     </view>
     <view class="weui-btn-area">

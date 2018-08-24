@@ -2,10 +2,12 @@
 const {request} = require('./utils/index.js');
 const {login} = require('./utils/request.js');
 const {validateFace:validateFaceConfig} = require('./constant/config.js');
+const { getController } = require('./pages/service/utils/controllers.js');
 
 App({
   onLaunch: function(){
-    
+    // debug使用，正式发布版本不需要
+    this.getController = getController;
   },
   onShow: function(options){
     console.log('app.onShow:', options);

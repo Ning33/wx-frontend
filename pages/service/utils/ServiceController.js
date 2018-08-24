@@ -1,3 +1,5 @@
+const {RouterUtil} = require('../../../utils/router.js');
+
 class ServiceController{
   
   // 服务名称
@@ -38,13 +40,17 @@ class ServiceController{
     this.tips = `${contextPath}/${serviceName}-tips`;
   }
 
+  getCurrentPage(){
+    const pages = getCurrentPages();
+      return pages[pages.length - 1];
+  }
+
   /**
    * 获取当前流程
    * 通过页面路径
    */
   getCurrentWorkflow(){
-    const pages = getCurrentPages();
-    const page = pages[pages.length - 1];
+    const page = this.getCurrentPage();
     const route = page.route;
     const workflowName = route.substr(route.lastIndexOf('-')+1);
     for(let i=0;i<this.workflows.length;i++){
@@ -65,36 +71,55 @@ class ServiceController{
   }
 
   // 流转至下一流程
-  next(data){
+  next(){
     // 查找workflows，进入下一流程
     const currentWorkflow = this.getCurrentWorkflow();
-    let nextWorkflow;
     if (currentWorkflow){
       const index = this.workflows.indexOf(currentWorkflow);
       
       if(index < this.workflows.length-1){
         // 如果不是最后一个流程，则触发下一流程
-        nextWorkflow = this.workflows[index + 1];
+        const nextWorkflow = this.workflows[index + 1];
+        return this.goToWorkflow(nextWorkflow);
       }else{
         // 如果是最后一个流程，则调用submit
-        return this.submit(data);
+        return this.submit();
       }
     }else{
-      // 当前流程为空，则初始化第一个流程为下一流程
-      nextWorkflow = this.workflows[0];
-    }
-    
-    // 流转至下一流程
-    let targetUrl = `${this.contextPath}/${this.serviceName}-${nextWorkflow.name}`;
-    // 如果有参数需要传递，则通过data传递
-    if (data) {
-      const jsonStr = JSON.stringify(data);
-      targetUrl += `?data=${jsonStr}`;
-    }
+      // 当前流程为空，则进行过滤器校验，校验通过后，初始化第一个流程为下一流程
+      this.handleFilters(this.serviceData).then(res=>{
+        if(res.result){
+          const nextWorkflow = this.workflows[0];
+          // 流转至下一流程
+          this.goToWorkflow(nextWorkflow);
+        }
+      });
 
-    wx.navigateTo({
-      url: targetUrl
-    })
+      // 注册回调处理
+      this.getCurrentPage().onNavigateBack = (res)=>{
+          const {type,data} = res;
+          switch(type){
+              case RouterUtil.navigateBackType.validateFace:{
+                  break;
+              }
+              // 参保人列表选择
+              case RouterUtil.navigateBackType.personSelect:{
+                  const personid = data.personid;
+                  this.serviceData.personid = personid;
+                  break;
+              }
+          }
+          this.next();
+      };
+    }
+  }
+
+  goToWorkflow(workflow){
+      let targetUrl = `${this.contextPath}/${this.serviceName}-${workflow.name}`;
+
+      wx.navigateTo({
+          url: targetUrl
+      })
   }
 
   // 提交，子类需覆盖
@@ -113,7 +138,7 @@ class ServiceController{
   }
 
   // 执行过滤器
-  handleFilters(page){
+  handleFilters(serviceData){
     const filters = [...this.serviceFilters];
 
       /**
@@ -124,7 +149,7 @@ class ServiceController{
        */
     const func = (res)=>{
       const filter = filters.shift();
-      return filter.doFilter(res.data).then(res => {
+      return filter.doFilter(res.serviceData).then(res => {
           // 过滤器未通过或者所有过滤器执行完毕，返回过滤结果，后续过滤器不再继续执行
         if (res.result === false || filters.length === 0){
             return res;
@@ -137,10 +162,7 @@ class ServiceController{
     
     return func({
       result:true,
-      data:{
-        page:page,
-        controller: this,
-      }
+      serviceData: serviceData
     });
   }
 

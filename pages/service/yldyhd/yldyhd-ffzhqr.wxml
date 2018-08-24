@@ -4,20 +4,16 @@
   <view class="page__bd">
     <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell">
-        <view class="weui-cell__bd">姓名</view>
-        <view class="weui-cell__ft">{{res.xm}}</view>
+        <view class="weui-cell__bd">开户名</view>
+        <view class="weui-cell__ft">{{ffzhqr.AAE133}}</view>
       </view>
       <view class="weui-cell">
-        <view class="weui-cell__bd">证件号码</view>
-        <view class="weui-cell__ft">{{res.zjhm}}</view>
+        <view class="weui-cell__bd">银行账号</view>
+        <view class="weui-cell__ft">{{ffzhqr.AAE010}}</view>
       </view>
       <view class="weui-cell">
-        <view class="weui-cell__bd">银行卡账号</view>
-        <view class="weui-cell__ft">{{res.yhkzh}}</view>
-      </view>
-      <view class="weui-cell">
-        <view class="weui-cell__bd">银行卡预留手机号码</view>
-        <view class="weui-cell__ft">{{res.ylsjhm}}</view>
+        <view class="weui-cell__bd">开户银行</view>
+        <view class="weui-cell__ft">{{ffzhqr.AAE195}}</view>
       </view>
     </view>
     <view class="weui-btn-area">

@@ -1,20 +1,21 @@
 const {StorageUtil} = require('../../../utils/storage.js');
 const {login} = require('../../../utils/request.js');
+const {personService} = require('../../../cgi/index.js');
 
 /**
  * 业务准入过滤器
  */
 class ServiceFilter {
 
-  doFilter(data) {
-    return this.wrapResult(true, data);
+  doFilter(serviceData) {
+    return this.wrapResult(true, serviceData);
   }
 
-  wrapResult(result, data) {
+  wrapResult(result, serviceData) {
     return new Promise((resolve, reject) => {
       resolve({
         result: result,
-        data: data
+        serviceData: serviceData
       })
     })
   }
@@ -24,9 +25,9 @@ class ServiceFilter {
  * 人脸识别过滤器
  */
 class ValidateFaceFilter extends ServiceFilter {
-  doFilter(data){
+  doFilter(serviceData){
     // TODO
-    return this.wrapResult(true,data);
+    return this.wrapResult(true, serviceData);
   }
 }
 
@@ -34,14 +35,14 @@ class ValidateFaceFilter extends ServiceFilter {
  * 实名绑定过滤器
  */
 class RealNameFilter extends ServiceFilter {
-  doFilter(data) {
+  doFilter(serviceData) {
     let result = true;
     // 获取用户信息
     const user = StorageUtil.loadUserInfo();
     if(user == null){
       //如果未获取到用户信息，则登录
       return login().then(()=>{
-        return this.doFilter(data);
+        return this.doFilter(serviceData);
       });
     }
     result = user.isBoundIdcard;
@@ -62,7 +63,7 @@ class RealNameFilter extends ServiceFilter {
       });
     }
 
-    return this.wrapResult(result,data);
+    return this.wrapResult(result, serviceData);
   }
 }
 
@@ -70,22 +71,33 @@ class RealNameFilter extends ServiceFilter {
  * 参保人选择过滤器
  */
 class PersonFilter extends ServiceFilter{
-  doFilter(data){
+  doFilter(serviceData){
     // 判断参保人是否已选中
-    const {controller} = data;
-    const personid = controller.serviceData.personid;
+    const personid = serviceData.personid;
     if(personid){
-      return this.wrapResult(true,data);
+      return this.wrapResult(true, serviceData);
     }
     
     // 查询参保人列表，选择参保人
-    
-    // 如果有多个参保人，则跳转至参保人列表选择页面
-    wx.navigateTo({
-      url: '/pages/user-center/person-list',
-    })
+    return personService.queryList().then(personList=>{
+      if(personList.length > 1){
+        // 如果有多个参保人，则跳转至参保人列表选择页面
+        wx.navigateTo({
+          url: '/pages/user-center/person-list',
+        });
+        return this.wrapResult(false, serviceData); 
+      }
 
-    return this.wrapResult(false,data)
+      if(personList.length === 1){
+        serviceData.personid = personList[0].personid;
+        return this.wrapResult(true, serviceData);
+      }
+
+      return this.wrapResult(false, serviceData);
+    });
+    
+
+    
   }
 }
 

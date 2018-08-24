@@ -13,6 +13,7 @@ function customRequest(options,retryCnt=1) {
   const defaultOptions = {
     urlPrefix: urlPrefix, 
     needLogin: true,
+    method: 'GET',
   };
   const customOptions = Object.assign({},defaultOptions,options);
 
@@ -28,6 +29,7 @@ function customRequest(options,retryCnt=1) {
         const requestOptions = {
           url: customOptions.urlPrefix + customOptions.urlPath,
           data: customOptions.data,
+          method: customOptions.method,
           header: {},
           success: (res) => {
             wx.hideLoading();

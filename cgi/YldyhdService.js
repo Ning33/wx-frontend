@@ -14,27 +14,14 @@ class YldyhdService extends RestService{
     })
   }
 
-    /**
-     * 提交申报信息
-     * @param personid
-     */
-  submitSbxx(personid){
-    return this.request({
-        urlPath: '/api/frontend/service/yldyhd/step-sbxx-submit',
-        data: {
-          personid: personid
-        }
-    })
-  }
-
   /**
    * 查询参保情况确认信息
    */
-  queryCbqkqr(orderno){
+  queryCbqkqr(personid){
     return this.request({
         urlPath: '/api/frontend/service/yldyhd/step-cbqkqr-query',
         data:{
-          orderno: orderno
+          personid: personid
         }
     })
   }
@@ -42,11 +29,11 @@ class YldyhdService extends RestService{
   /**
    * 查询发放账户确认信息
    */
-  queryFfzhqr(orderno){
+  queryFfzhqr(personid){
     return this.request({
       urlPath: '/api/frontend/service/yldyhd/step-ffzhqr-query',
       data: {
-        orderno: orderno
+        personid: personid
       }
     })
   }
@@ -54,11 +41,13 @@ class YldyhdService extends RestService{
   /**
    * 提交申报
    */
-  submit(orderno){
+  submit(personid,sbxx){
     return this.request({
       urlPath: '/api/frontend/service/yldyhd/submit',
+      method: 'POST',
       data: {
-        orderno: orderno
+        personid: personid,
+        sbxx: sbxx
       }
     })
   }

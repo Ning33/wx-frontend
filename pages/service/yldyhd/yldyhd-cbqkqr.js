@@ -9,16 +9,16 @@ Page({
    * 页面的初始数据
    */
   data: {
-    res: {
+    cbqkqr: {
 
     }
   },
 
   onLoad(options){
-    const orderno = controller.serviceData.orderno;
-    yldyhdService.queryCbqkqr(orderno).then(res=>{
+    const personid = controller.serviceData.personid;
+    yldyhdService.queryCbqkqr(personid).then(res=>{
       this.setData({
-          res:res
+        cbqkqr:res
       });
     })
   },
