@@ -1,7 +1,9 @@
 // pages/service/yldyhd/yldyhd-sbxx.js
 const { getController } = require('../utils/controllers.js');
 const {yldyhdService} = require('../../../cgi/index.js');
+const { RouterUtil } = require('../../../utils/router.js');
 const controller = getController('yldyhd');
+
 
 Page({
 

@@ -60,7 +60,7 @@ Page({
   handleSelectRow(event){
     const {mode} = this.data;
     
-    const personid = event.currentTarget.dataset.personid;
+    const {personid,name,idcard} = event.currentTarget.dataset;
     switch(mode){
       // 选择参保人模式，点击跳转至后续业务,并传入personid
       case Mode.select:{
@@ -68,7 +68,9 @@ Page({
         RouterUtil.navigateBack({
           type: RouterUtil.navigateBackType.personSelect,
           data: {
-            personid: personid
+            personid: personid,
+            idcard: idcard,
+            name: name,
           }
         })
         

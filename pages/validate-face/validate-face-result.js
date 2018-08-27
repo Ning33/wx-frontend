@@ -31,11 +31,11 @@ Page({
     //人脸成功，保存token
     if(isSuccess){
 
-      //保存token至前端
-      StorageUtil.saveValidateFaceToken(idcard,token);
-
       //保存token至后端
-      validateFaceService.saveToken(token).catch(res=>{
+      validateFaceService.saveToken(token).then(expired=>{
+          //保存token至前端
+          StorageUtil.saveValidateFaceToken(idcard,token,expired);
+      }).catch(res=>{
         //保存失败，请重新人脸识别
         this.setData({
           isSuccess: false,

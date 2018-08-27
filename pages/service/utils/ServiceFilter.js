@@ -26,8 +26,20 @@ class ServiceFilter {
  */
 class ValidateFaceFilter extends ServiceFilter {
   doFilter(serviceData){
-    // TODO
-    return this.wrapResult(true, serviceData);
+    //判断业务中选择的人员是否存在有效的人脸识别
+    const {personid,idcard,name} = serviceData;
+    const token = StorageUtil.loadValidateFaceToken(idcard);
+    if(token){
+      return this.wrapResult(true, serviceData);
+    }
+
+    //人脸token无效，跳转至人脸识别处理
+    wx.navigateTo({
+      url: `/pages/validate-face/validate-face?name=${name}&idcard=${idcard}`,
+    });
+
+    return this.wrapResult(false, serviceData);
+    
   }
 }
 

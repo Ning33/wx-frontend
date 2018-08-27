@@ -1,7 +1,7 @@
 
 const USER_INFO = "userInfo";
 const VALIDATE_FACE_TOKENS = "validateFaceTokens";
-const VALIDATE_FACE_STACK = "validateFaceStack"
+
 /**
  * 存储工具类
  */
@@ -28,21 +28,28 @@ class StorageUtil {
     return StorageUtil.saveUserInfo(null);
   }
 
-  /**
-   * 保存人脸识别验证码
-   * 保存结果为map
-   * @param idcard 身份证号
-   * @param token 人脸识别凭证
-   */
-  static saveValidateFaceToken(idcard,token){
+    /**
+     * 保存人脸识别验证码
+     * 保存结果为map
+     * @param idcard 身份证号
+     * @param token 人脸识别凭证
+     * @param expired 有效期，默认10分钟
+     */
+  static saveValidateFaceToken(idcard,token,expired=new Date().getTime()+10*60*1000){
 
     //读取已有的token
-    let validateFaceTokens = StorageUtil.load(VALIDATE_FACE_TOKENS);
+    let validateFaceTokens = StorageUtil.loadValidateFaceToken();
     if(typeof validateFaceTokens === 'object' && validateFaceTokens != null){
-      validateFaceTokens[idcard] = token;
+      validateFaceTokens[idcard] = {
+        token: token,
+        expired: expired
+      };
     }else{
       validateFaceTokens = {
-        [idcard]: token
+        [idcard]: {
+          token: token,
+          expired: expired
+        }
       };
     }
 
@@ -55,11 +62,34 @@ class StorageUtil {
    */
   static loadValidateFaceToken(idcard){
     if (idcard === undefined){
-      return StorageUtil.load(VALIDATE_FACE_TOKENS);
+      const tokens = StorageUtil.load(VALIDATE_FACE_TOKENS);
+      if(tokens == null){
+        return null;
+      }
+
+      // 过滤过期的token
+      Object.keys(tokens).forEach(idcard=>{
+        const expired = tokens[idcard].expired;
+        if(expired < new Date().getTime()){
+          delete tokens[idcard];
+        }
+      });
+
+      //避免改变globalData中的数据，深度复制一次
+      const resultTokens = JSON.parse(JSON.stringify(tokens));
+      Object.keys(resultTokens).forEach(idcard=>{
+        resultTokens[idcard] = resultTokens[idcard].token;
+      });
+      return resultTokens;
     }else if(idcard === null){
       return null;
     }else{
-      return StorageUtil.load(VALIDATE_FACE_TOKENS)[idcard];
+      const tokens = StorageUtil.loadValidateFaceToken();
+      if(tokens == null){
+        return null;
+      }
+
+      return tokens[idcard];
     }
     
   }

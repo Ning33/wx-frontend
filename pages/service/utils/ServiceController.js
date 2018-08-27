@@ -104,8 +104,10 @@ class ServiceController{
               }
               // 参保人列表选择
               case RouterUtil.navigateBackType.personSelect:{
-                  const personid = data.personid;
+                  const {personid,idcard,name} = data;
                   this.serviceData.personid = personid;
+                  this.serviceData.idcard = idcard;
+                  this.serviceData.name = name;
                   break;
               }
           }

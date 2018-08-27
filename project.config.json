@@ -33,46 +33,25 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 4,
+			"current": 0,
 			"list": [
 				{
 					"id": 0,
-					"name": "人脸识别",
-					"pathName": "pages/validate-face/validate-face-input",
-					"query": ""
-				},
-				{
-					"id": 1,
 					"name": "人脸识别结果",
 					"pathName": "pages/validate-face/validate-face",
 					"query": "idcard=420116199011214537&name=杜鹏飞",
 					"scene": "1038",
 					"referrerInfo": {
 						"appId": "wx75855cd02ed4cfb9",
-						"extraData": "{\"token\":\"{537ECF88-62E1-410E-9DF6-1BB0C4FFD4C2}\"}"
+						"extraData": "{\"token\":\"{0FE74E28-CE11-4946-9046-264A2B757742}\"}"
 					}
 				},
 				{
-					"id": -1,
-					"name": "成功提示",
-					"pathName": "pages/demo/result-success",
-					"query": "",
-					"scene": "1038",
-					"referrerInfo": {
-						"appId": "",
-						"extraData": "{}"
-					}
-				},
-				{
-					"id": -1,
-					"name": "用户实名",
-					"pathName": "pages/user-center/user-binder",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "成功",
-					"pathName": "pages/demo/result-success"
+					"id": 2,
+					"name": "人脸识别",
+					"pathName": "pages/validate-face/validate-face-result",
+					"query": "isSuccess=true&token={0FE74E28-CE11-4946-9046-264A2B757742}&errcode=0,idcard=420116199011214537&name=杜鹏飞",
+					"scene": "1001"
 				}
 			]
 		}
