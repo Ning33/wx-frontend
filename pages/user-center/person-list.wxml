@@ -2,7 +2,8 @@
 <view class="page">
   <view class="page__bd">
     <view class="weui-cells weui-cells_after-title">
-        <view wx:for="{{personList}}" wx:key="{{index}}" class="weui-cell" bindtap="handleSelectRow" data-personid="{{item.personid}}">
+        <!-- 参保人列表，第一个为本人 -->
+        <view wx:for="{{personList}}" wx:key="{{item.personid}}" class="weui-cell {{item.isSelf?'isSelf':''}}" bindtap="handleSelectRow" data-personid="{{item.personid}}">
             <view class="weui-cell__bd">{{item.name}}</view>
             <view class="weui-cell__ft">{{item.idcard}}</view>
         </view>

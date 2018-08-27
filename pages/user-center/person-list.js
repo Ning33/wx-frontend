@@ -15,7 +15,7 @@ Page({
    */
   data: {
     mode: Mode.select,
-    personList: []
+    personList: [],//注意，本人始终为第一个
   },
 
   onLoad(options){
@@ -37,9 +37,16 @@ Page({
    */
   onShow: function () {
     personService.queryList().then(personList=>{
-      this.setData({
-        personList: personList
-      })
+      for(let i=0;i<personList.length;i++){
+        const person = personList[i];
+        if(person.isSelf){
+          this.setData({
+            personList: personList.splice(i, 1).concat(personList)
+          })
+          break;
+        }
+      }
+      
     });
   },
 

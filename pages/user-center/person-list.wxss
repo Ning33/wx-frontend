@@ -1,1 +1,4 @@
 /* pages/user-center/person-list.wxss */
+.isSelf{
+  background-color: rgba(122,122,122,0.5);
+}
