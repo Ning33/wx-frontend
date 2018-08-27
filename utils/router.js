@@ -11,21 +11,21 @@ class RouterUtil{
    */
   static navigateBack(res){
     const {type,data} = res;
+    // 获取目标页面
+    const pages = getCurrentPages();
+    const size = pages.length;
+
+    const targetPage = pages[size - 2];
     wx.navigateBack({
       success: function(){
-        // 跳转完成后，当前页面即是目标页面
-        const pages = getCurrentPages();
-        const size = pages.length;
-   
-        const currentPage = pages[size - 1];
-        if (typeof currentPage.onNavigateBack === 'function') {
-          currentPage.onNavigateBack({
+        if (typeof targetPage.onNavigateBack === 'function') {
+          targetPage.onNavigateBack({
             type: type,
             data: data,
           })
         }
       }
-    })
+    });
   }
 }
 

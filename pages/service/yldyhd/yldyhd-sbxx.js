@@ -15,7 +15,27 @@ Page({
   },
 
   onLoad(options){
-    const {personid} = controller.serviceData;
+    this.init();
+  },
+
+  /**
+   * 注册页面返回事件
+   */
+  onNavigateBack(res){
+    const { type, data } = res;
+    switch (type) {
+      case RouterUtil.navigateBackType.validateFace: {
+        this.init();
+        break;
+      }
+    }
+  },
+
+  /**
+   * 初始化数据
+   */
+  init(){
+    const { personid } = controller.serviceData;
     yldyhdService.checkIn(personid).then(res => {
       this.setData({
         sbxx: res
