@@ -47,7 +47,7 @@ class YldyhdService extends RestService{
       method: 'POST',
       data: {
         personid: personid,
-        sbxx: sbxx
+        ...sbxx
       }
     })
   }
