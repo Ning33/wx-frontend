@@ -29,7 +29,7 @@ Page({
       icon: '/style/images/icon-mail.png'
     }];
     //未实名
-    if (user === "" || user === undefined || user === null) {
+    if (!(user&&user.isBoundIdcard)) {
       let confirmUser = {
         title: '实名认证',
         url: '/pages/user-center/user-binder',
