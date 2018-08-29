@@ -1,2 +1,29 @@
-<!--pages/user-center/person-detail.wxml-->
-<text>pages/user-center/person-detail.wxml</text>
+<view class="page">
+  <view class="info">
+    <view class="info_">
+      <text>姓名:</text>
+      <text class="letter">{{personInfo.name}}</text>
+    </view>
+    <view class="info_">
+      <text>性别:</text>
+      <text class="letter">{{personInfo.sex}}</text>
+    </view>
+    <view class="info_">
+      <text >出生年月:</text>
+      <text class="letter">{{personInfo.birthday}}</text>
+    </view>
+    <view class="info_">
+      <text>身份证号码:</text>
+      <text class="letter">{{personInfo.idcard}}</text>
+    </view>
+    <view class="info_">
+      <text>住址:</text>
+      <text class="letter">{{personInfo.address}}</text>
+    </view>
+    <view class="info_">
+      <text>电话号码:</text>
+      <text class="letter">{{personInfo.tel}}</text>
+    </view>
+
+  </view>
+</view>

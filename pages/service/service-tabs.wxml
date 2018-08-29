@@ -41,11 +41,11 @@
 <template name="weui-has-service">
   <view class="weui-content-panel" >
     <view class="weui-content-top">
-      <text>{{orderno}}</text> 
+      <text>{{orderNo}}</text> 
       <text>{{personName}}</text> 
       <text style="color:{{status=='21'?'#14e714':'red' }};">{{status=="10"?"审批中":status=="21"?"成功":"失败"}}</text>
     </view>
-    <view class="weui-content-middle" bindtap='toDetail' id="{{orderno}}">
+    <view class="weui-content-middle" bindtap='toDetail' id="{{orderNo}}">
       <text>{{serviceName}}</text>
       <image src="./navigator-images/u16.png" style=" width:10px; height: 15px;" ></image>
     </view>

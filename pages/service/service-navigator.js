@@ -63,7 +63,7 @@ Page({
     //判断是否发送搜索请求
     if (searchValue_.length > 0 ){
       //进行搜索
-      ServiceItems.queryServiceItemsByTitle(searchValue_).then((res)=>{
+      serviceItems.queryServiceItemsByTitle(searchValue_).then((res)=>{
         var data = res;
         this.setData({
           //显示搜索内容

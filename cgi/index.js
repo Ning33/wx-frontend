@@ -4,7 +4,8 @@ const PersonService = require('./PersonService.js');
 const ServiceItems = require('./ServiceItems.js');
 const YldyhdService = require('./YldyhdService.js');
 const MyService = require("./MyService.js");
-const DictService = require('./DictService.js')
+const DictService = require('./DictService.js');
+const PersonDetail = require('./PersonDetail.js');
 
 
 module.exports = {
@@ -14,5 +15,6 @@ module.exports = {
   serviceItems: new ServiceItems(),
   yldyhdService: new YldyhdService(),
   myService: new MyService(),
-  dictService: new DictService()
+  dictService: new DictService(),
+  personDetail: new PersonDetail()
 }

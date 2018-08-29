@@ -1,1 +1,14 @@
-/* pages/user-center/person-detail.wxss */
+
+.info_{
+    display: flex;
+    align-items: center;
+    vertical-align: center;
+    font-family: "微软雅黑";
+    justify-content: space-between;
+    margin: 7px 14px;
+    padding: 5px 10px;
+    border-bottom: solid 2px #f2f2f2;
+}
+.letter{
+  color: #808080
+}
