@@ -85,9 +85,9 @@ Page({
   
 //跳转到详细信息
 toDetail: function(e){
-  let orderno = e.currentTarget.id;
+  let orderNo = e.currentTarget.id;
   wx.navigateTo({
-    url: './service-result/ServiceResult?orderno=' + orderno,
+    url: './service-result/ServiceResult?orderNo=' + orderNo,
   })
 }
 

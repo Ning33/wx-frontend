@@ -16,7 +16,7 @@ Page({
    */
   onLoad: function (options) {
     //根据受理单号查询数据
-    myService.getMyServiceByOrderNo(options.orderno).then((res)=>{
+    myService.getMyServiceByOrderNo(options.orderNo).then((res)=>{
       let createdTime = p_utils.formatDate(res.createdTime);
       this.setData({
         result: res,

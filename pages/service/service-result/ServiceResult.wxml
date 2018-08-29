@@ -3,7 +3,7 @@
   <view class="weui-order-date" >
     <view class="weui-orderno">
       <text>受理单号</text>
-      <text>{{result.orderno}}</text>
+      <text>{{result.orderNo}}</text>
     </view>
 
     <view class="weui-date">
@@ -18,7 +18,7 @@
 
     <view class="weui-date">
       <text>事项名称</text>
-      <text style='color: #14e714;'>{{result.serviceTitle}}</text>
+      <text style='color: #14e714;'>{{result.serviceName}}</text>
     </view>
 
     <view class="weui-date">
