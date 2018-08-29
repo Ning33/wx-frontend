@@ -1,5 +1,5 @@
 /* pages/service/service-result/ServiceResult.wxss */
-.weui-orderno{
+.weui-orderNo{
     display: flex;
     align-items: center;
     vertical-align: center;

@@ -15,7 +15,7 @@ Page({
   },
 
   onLoad(options){
-    yldyhdService.queryFfzhqr(controller.serviceData.personid).then(res=>{
+    yldyhdService.queryFfzhqr(controller.serviceData.personId).then(res=>{
       this.setData({
         ffzhqr: res
       })

@@ -60,15 +60,15 @@ Page({
   handleSelectRow(event){
     const {mode} = this.data;
     
-    const {personid,name,idcard} = event.currentTarget.dataset;
+    const {personId,name,idcard} = event.currentTarget.dataset;
     switch(mode){
-      // 选择参保人模式，点击跳转至后续业务,并传入personid
+      // 选择参保人模式，点击跳转至后续业务,并传入personId
       case Mode.select:{
         //向上一页面传值
         RouterUtil.navigateBack({
           type: RouterUtil.navigateBackType.personSelect,
           data: {
-            personid: personid,
+            personId: personId,
             idcard: idcard,
             name: name,
           }
@@ -79,7 +79,7 @@ Page({
       // 编辑参保人模式,点击跳转至人员详细信息页面
       case Mode.edit:{
         wx.navigateTo({
-          url: '/pages/user-center/person-detail?personid='+personid,
+          url: '/pages/user-center/person-detail?personId='+personId,
         });
         break;
       }

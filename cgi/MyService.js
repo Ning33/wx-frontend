@@ -1,4 +1,4 @@
-const RestService = require("./RestService.js")
+const RestService = require("./RestService.js");
 
 class MyService extends RestService{
 
@@ -16,11 +16,11 @@ class MyService extends RestService{
 /**
  * 根据单号查询事项
  */
-  getMyServiceByOrderNo(orderno){
+  getMyServiceByOrderNo(orderNo){
     return this.request({
       urlPath:"/api/frontend/myservice/queryMyServiceByOrderNo",
       data:{
-        orderno: orderno
+        orderNo: orderNo
       }
     });
   }

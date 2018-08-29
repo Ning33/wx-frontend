@@ -37,8 +37,8 @@ Page({
    * 初始化数据
    */
   init(){
-    const { personid } = controller.serviceData;
-    yldyhdService.checkIn(personid).then(res => {
+    const { personId } = controller.serviceData;
+    yldyhdService.checkIn(personId).then(res => {
       this.setData({
         sbxx: res
       })
@@ -58,7 +58,7 @@ Page({
    * 下一步
    */
   handleNext() {
-    const personid = controller.serviceData.personid;
+    const personId = controller.serviceData.personId;
     //回写申报信息
     Object.assign(controller.serviceData,{
       sbxx: this.data.sbxx

@@ -15,8 +15,8 @@ Page({
   },
 
   onLoad(options){
-    const personid = controller.serviceData.personid;
-    yldyhdService.queryCbqkqr(personid).then(res=>{
+    const personId = controller.serviceData.personId;
+    yldyhdService.queryCbqkqr(personId).then(res=>{
       this.setData({
         cbqkqr:res
       });

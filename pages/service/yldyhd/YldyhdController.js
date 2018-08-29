@@ -20,7 +20,7 @@ class YldyhdController extends ServiceController{
 
   // 实现提交方法
   submit(data){
-    yldyhdService.submit(this.serviceData.personid,this.serviceData.sbxx).then(()=>{
+    yldyhdService.submit(this.serviceData.personId,this.serviceData.sbxx).then(()=>{
       wx.navigateTo({
         url: '/pages/demo/result-success',
       })

@@ -1,7 +1,7 @@
 <!--pages/service/service-result/ServiceResult.wxml-->
 <view class="page">
   <view class="weui-order-date" >
-    <view class="weui-orderno">
+    <view class="weui-orderNo">
       <text>受理单号</text>
       <text>{{result.orderNo}}</text>
     </view>

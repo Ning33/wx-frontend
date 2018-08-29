@@ -27,7 +27,7 @@ class ServiceFilter {
 class ValidateFaceFilter extends ServiceFilter {
   doFilter(serviceData){
     //判断业务中选择的人员是否存在有效的人脸识别
-    const {personid,idcard,name} = serviceData;
+    const {personId,idcard,name} = serviceData;
     const token = StorageUtil.loadValidateFaceToken(idcard);
     if(token){
       return this.wrapResult(true, serviceData);
@@ -85,8 +85,8 @@ class RealNameFilter extends ServiceFilter {
 class PersonFilter extends ServiceFilter{
   doFilter(serviceData){
     // 判断参保人是否已选中
-    const personid = serviceData.personid;
-    if(personid){
+    const personId = serviceData.personId;
+    if(personId){
       return this.wrapResult(true, serviceData);
     }
     
@@ -101,7 +101,7 @@ class PersonFilter extends ServiceFilter{
       }
 
       if(personList.length === 1){
-        serviceData.personid = personList[0].personid;
+        serviceData.personId = personList[0].personId;
         return this.wrapResult(true, serviceData);
       }
 

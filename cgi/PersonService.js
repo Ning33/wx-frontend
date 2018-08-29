@@ -32,13 +32,13 @@ class PersonService extends RestService{
 
   /**
    * 删除参保人
-   * @param personid 人员ID
+   * @param personId 人员ID
    */
-  unbind(personid){
+  unbind(personId){
     return this.request({
       urlPath: '/api/frontend/user/unbind',
       data: {
-        personid,
+        personId,
       }
     })
   }

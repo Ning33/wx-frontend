@@ -14,15 +14,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    //首先获取传值过来的personid
-    let personid = options.personid;
-    if(personid === "" || personid === undefined){
+    //首先获取传值过来的personId
+    let personId = options.personId;
+    if(personId === "" || personId === undefined){
       let userInfo = StorageUtil.load('userInfo');
-      personid = userInfo.personid;
+      personId = userInfo.personId;
     }
 
     //查询个人信息
-    personDetail.queryPersonDetail(personid).then((personInfo)=>{
+    personDetail.queryPersonDetail(personId).then((personInfo)=>{
       //字段为空转换
       if (personInfo.birthday === null || personInfo.birthday === ""){
         personInfo.birthday = "暂无信息";
