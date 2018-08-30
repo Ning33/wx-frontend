@@ -29,7 +29,7 @@ class ValidateFaceFilter extends ServiceFilter {
     //判断业务中选择的人员是否存在有效的人脸识别
     const {personId,idcard,name} = serviceData;
     const token = StorageUtil.loadValidateFaceToken(idcard);
-    if(token){
+    if(typeof token === 'string' && token){
       return this.wrapResult(true, serviceData);
     }
 
@@ -102,6 +102,8 @@ class PersonFilter extends ServiceFilter{
 
       if(personList.length === 1){
         serviceData.personId = personList[0].personId;
+        serviceData.idcard = personList[0].idcard;
+        serviceData.name = personList[0].name;
         return this.wrapResult(true, serviceData);
       }
 
