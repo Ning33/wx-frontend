@@ -46,7 +46,6 @@ Page({
           break;
         }
       }
-      
     });
   },
 
@@ -59,8 +58,7 @@ Page({
   // 点击人员列表，根据模式选择后续处理
   handleSelectRow(event){
     const {mode} = this.data;
-    
-    const {personId,name,idcard} = event.currentTarget.dataset;
+    const {personid:personId,name,idcard} = event.currentTarget.dataset;
     switch(mode){
       // 选择参保人模式，点击跳转至后续业务,并传入personId
       case Mode.select:{
