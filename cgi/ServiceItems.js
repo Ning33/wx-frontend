@@ -21,8 +21,20 @@ class ServiceItems extends RestService{
       data:{
         title: title
       }
-    })
+    });
+  }
+  /**
+   * 查询所有分类
+   */
+  queryAllServiceCatalog(){
+    return this.request({
+      urlPath: '/api/frontend/serviceItems/queryAllCatalog',
+      data: {
+
+      }
+    });
   }
 }
+
 
 module.exports = ServiceItems

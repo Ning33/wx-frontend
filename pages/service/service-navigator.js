@@ -14,7 +14,7 @@ Page({
     searchValue: '',  //搜索框里获取值
     searchPanl: false , //搜索内容面板 隐藏
     serviceNum: [],  //分类后事项总数
-    tabs: ["征缴业务", "养老待遇", "工伤待遇","失业待遇","医疗待遇"],
+    tabs: [],
     img_src: ["./navigator-images/zjyw.png", "./navigator-images/yldy.png", "./navigator-images/gsdy.png", "./navigator-images/sydy.png", "./navigator-images/yldy_yy.png"],
     activeIndex: 0,
     sliderOffset: 0,
@@ -26,6 +26,19 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+
+    //查询所有导航分类
+    serviceItems.queryAllServiceCatalog().then((res) => {
+      let data = res;
+      let tabs = [];
+      for (let item of data) {
+        tabs.push(item.title);
+      }
+      that.setData({
+        tabs: tabs
+      });
+    });
+
     wx.getSystemInfo({
       success: function (res) {
         that.setData({
@@ -36,6 +49,7 @@ Page({
       }
     });
 
+     
     //查询事项数据 并分类
     that.seachAllItem();
   },
