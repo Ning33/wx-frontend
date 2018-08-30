@@ -1,4 +1,7 @@
-const { StorageUtil } = require('../../utils/index.js')
+const { StorageUtil } = require('../../utils/index.js');
+const { SecurityLevel } = require('../../constant/constant.js');
+const { realNameFilter } = require('../service/utils/ServiceFilter.js');
+
 Page({
 
   /**
@@ -18,22 +21,26 @@ Page({
     let menuList = [{
       title: '个人信息',
       url: '/pages/user-center/person-detail',
-      icon: '/style/images/icon-mail.png'
+      icon: '/style/images/icon-mail.png',
+      securityLevel: SecurityLevel.REAL_NAME
     }, {
       title: '我的事项',
       url: '/pages/service/service-tabs',
-      icon: '/style/images/icon-mail.png'
+      icon: '/style/images/icon-mail.png',
+      securityLevel: SecurityLevel.REAL_NAME
     }, {
       title: '常用参保人',
       url: '/pages/user-center/person-list?mode=edit',
-      icon: '/style/images/icon-mail.png'
+      icon: '/style/images/icon-mail.png',
+      securityLevel: SecurityLevel.REAL_NAME
     }];
     //未实名
     if (!(user&&user.isBoundIdcard)) {
       let confirmUser = {
         title: '实名认证',
         url: '/pages/user-center/user-binder',
-        icon: '/style/images/icon-mail.png'
+        icon: '/style/images/icon-mail.png',
+        securityLevel: SecurityLevel.REAL_NAME
       }
       menuList.push(confirmUser);
     }
@@ -42,53 +49,18 @@ Page({
     })
 
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+  // 菜单点击事件
+  handleMenuTap(event){
+    const {url,securityLevel} = event.currentTarget.dataset.item;
+    if(securityLevel >= SecurityLevel.REAL_NAME){
+      realNameFilter.doFilter().then(res=>{
+        const {result} = res;
+        if(result){
+          wx.navigateTo({
+            url: url
+          })
+        }
+      })
+    }
   }
 })

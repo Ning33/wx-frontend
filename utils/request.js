@@ -1,6 +1,6 @@
 const { urlPrefix } = require('../constant/config.js');
 const { StorageUtil } = require('./storage.js');
-const responseStatus = require('../constant/responseStatus.js');
+const { ResponseStatus } = require('../constant/constant.js');
 
 
 
@@ -38,11 +38,11 @@ function customRequest(options,retryCnt=1) {
               //返回值正常
               case 200:{
                 switch(res.data.errcode){
-                  case responseStatus.OK:{
+                  case ResponseStatus.OK:{
                     return resolve(res.data.data);
                   }
                   // 数据校验异常，需要弹出提示信息
-                  case responseStatus.DATA_VALIDATE_EXCEPTION:{
+                  case ResponseStatus.DATA_VALIDATE_EXCEPTION:{
                     wx.showToast({
                       title: res.data.errmsg,
                       icon: 'none',
@@ -51,11 +51,11 @@ function customRequest(options,retryCnt=1) {
                     break;
                   }
                   // 前端调用微信登录的js_code无效
-                  case responseStatus.JS_CODE_INVALID:
+                  case ResponseStatus.JS_CODE_INVALID:
                   // 微信登录的sessionKey已过期
-                  case responseStatus.SESSION_WX_EXPIRED:
+                  case ResponseStatus.SESSION_WX_EXPIRED:
                   // 网关发放的sessionid过期
-                  case responseStatus.SESSION_GATEWAY_EXPIRED:{
+                  case ResponseStatus.SESSION_GATEWAY_EXPIRED:{
                     if(retryCnt < 3){
                       return login().then(() => customRequest(options, retryCnt+1).then(res=>resolve(res)).catch(res=>reject(res)));
                     }
@@ -63,7 +63,7 @@ function customRequest(options,retryCnt=1) {
                     return handleException(reject,res);
                   }
                   //未实名用户，提醒完成实名
-                  case responseStatus.UNBOUND_USER:{
+                  case ResponseStatus.UNBOUND_USER:{
                     return wx.showModal({
                       title: '温馨提示',
                       content: '请先完成实名用户绑定',
@@ -78,7 +78,7 @@ function customRequest(options,retryCnt=1) {
                     });
                   }
                   // 人脸token过期,跳转至人脸识别页面
-                  case responseStatus.VALIDATE_FACE_EXPIRED: {
+                  case ResponseStatus.VALIDATE_FACE_EXPIRED: {
                     //前端删除对应的人脸识别token
                     const {idcard,name} = res.data.data;
                     StorageUtil.clearValidateFaceToken(idcard);
