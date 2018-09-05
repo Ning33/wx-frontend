@@ -23,7 +23,7 @@ class PersonService extends RestService{
   bind(userInfo) {
     const { name, idcard } = userInfo;
     return this.request({
-      urlPath: '/api/frontend/user/bind',
+      urlPath: '/api/frontend/user/person/bind',
       data: {
         name, idcard
       }
@@ -36,7 +36,7 @@ class PersonService extends RestService{
    */
   unbind(personId){
     return this.request({
-      urlPath: '/api/frontend/user/unbind',
+      urlPath: '/api/frontend/user/person/unbind',
       data: {
         personId,
       }
