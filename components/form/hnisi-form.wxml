@@ -1,0 +1,8 @@
+<!--components/form/hnisi-form.wxml-->
+<form bindsubmit="handleSubmit">
+  <view class="weui-toptips weui-toptips_warn" wx:if="{{isShowTips}}">{{tips}}</view>
+  <slot name="content"></slot>
+  <view class="weui-btn-area">
+    <button class="weui-btn" type="primary" formType="submit">提交</button>
+  </view>
+</form>

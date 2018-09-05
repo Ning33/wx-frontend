@@ -1,60 +1,27 @@
 <!--pages/service/yldyhd/yldyhd-sbxx.wxml-->
 <view class="page">
   <view class="page__bd">
-    <view class="weui-cells__title">个人信息</view>
-    <view class="weui-cells weui-cells_after-title">
-      <view class="weui-cell">
-        <view class="weui-cell__bd">姓名</view>
-        <view class="weui-cell__ft">{{sbxx.AAC003}}</view>
-      </view>
-      <view class="weui-cell">
-        <view class="weui-cell__bd">证件号码</view>
-        <view class="weui-cell__ft">{{sbxx.AAC002}}</view>
-      </view>
-      <view class="weui-cell">
-        <view class="weui-cell__bd">社保卡账号</view>
-        <view class="weui-cell__ft">{{sbxx.AAE010}}</view>
-      </view>
-    </view>
+    <hnisi-form model="{{sbxx}}" rules="{{rules}}" bindsubmit="handleNext">
+      <view slot="content">
+        <hnisi-list title="个人信息">
+          <hnisi-input id="AAC003" label="姓名" value="{{sbxx.AAC003}}"/>
+          <hnisi-input id="AAC002" label="证件号码" value="{{sbxx.AAC002}}"/>
+          <hnisi-input id="AAE010" label="社保卡账号" value="{{sbxx.AAE010}}"/>
+        </hnisi-list>
 
-    <view class="weui-cells__title">基本资料</view>
-    <view class="weui-cells weui-cells_after-title">
-      <view class="weui-cell weui-cell_input">
-        <view class="weui-cell__hd"><view class="weui-label">户口所属社区居(村)委会</view></view>
-        <view class="weui-cell__bd"><input class="weui-input" value="{{sbxx.CAC031}}" bindinput="handleInput" data-field="CAC031" placeholder="请输入"/></view>
-      </view>
-      <view class="weui-cell weui-cell_input">
-        <view class="weui-cell__hd"><view class="weui-label">籍贯</view></view>
-        <view class="weui-cell__bd"><input class="weui-input" value="{{sbxx.CAC542}}" bindinput="handleInput" data-field="CAC542" placeholder="请输入"/></view>
-      </view>
-      <view class="weui-cell weui-cell_input">
-        <view class="weui-cell__hd"><view class="weui-label">是否异地定居</view></view>
-        <view class="weui-cell__bd"><input class="weui-input" value="{{sbxx.CIC520}}" bindinput="handleInput" data-field="CIC520" placeholder="请输入"/></view>
-      </view>
-    </view>
+        <hnisi-list title="基本资料">
+          <hnisi-input id="CAC031" label="户口所属社区居(村)委会" value="{{sbxx.CAC031}}" placeholder="请输入" bindinput="handleInput"/>
+          <hnisi-input id="CAC542" label="籍贯" value="{{sbxx.CAC542}}" placeholder="请输入" bindinput="handleInput"/>
+          <hnisi-input id="CIC520" label="是否异地定居" value="{{sbxx.CIC520}}" placeholder="请输入" bindinput="handleInput"/>
+        </hnisi-list>
 
-    <view class="weui-cells__title">联系方式</view>
-    <view class="weui-cells weui-cells_after-title">
-      <view class="weui-cell weui-cell_input">
-        <view class="weui-cell__hd"><view class="weui-label">手机号码</view></view>
-        <view class="weui-cell__bd"><input class="weui-input" value="{{sbxx.CAC554}}" bindinput="handleInput" data-field="CAC554" placeholder="请输入"/></view>
+        <hnisi-list title="联系方式">
+          <hnisi-input id="CAC554" label="手机号码" value="{{sbxx.CAC554}}" placeholder="请输入" bindinput="handleInput"/>
+          <hnisi-input id="AAE005" label="固定电话" value="{{sbxx.AAE005}}" placeholder="请输入" bindinput="handleInput"/>
+          <hnisi-input id="CAC552" label="现居住地址" value="{{sbxx.CAC552}}" placeholder="请输入" bindinput="handleInput"/>
+          <hnisi-input id="CAC551" label="邮政编码" value="{{sbxx.CAC551}}" placeholder="请输入" bindinput="handleInput"/>        
+        </hnisi-list>
       </view>
-      <view class="weui-cell weui-cell_input">
-        <view class="weui-cell__hd"><view class="weui-label">固定电话</view></view>
-        <view class="weui-cell__bd"><input class="weui-input" value="{{sbxx.AAE005}}" bindinput="handleInput" data-field="AAE005" placeholder="请输入"/></view>
-      </view>
-      <view class="weui-cell weui-cell_input">
-        <view class="weui-cell__hd"><view class="weui-label">现居住地址</view></view>
-        <view class="weui-cell__bd"><input class="weui-input" value="{{sbxx.CAC552}}" bindinput="handleInput" data-field="CAC552" placeholder="请输入"/></view>
-      </view>
-      <view class="weui-cell weui-cell_input">
-        <view class="weui-cell__hd"><view class="weui-label">邮政编码</view></view>
-        <view class="weui-cell__bd"><input class="weui-input" value="{{sbxx.CAC551}}" bindinput="handleInput" data-field="CAC551" placeholder="请输入"/></view>
-      </view>
-    </view> 
-      
-    <view class="weui-btn-area">
-      <button class="weui-btn" type="primary" bindtap="handleNext">下一步</button>
-    </view>
+    </hnisi-form>
   </view>
 </view>

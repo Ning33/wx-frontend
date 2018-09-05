@@ -1,1 +1,7 @@
-{}
+{
+  "usingComponents": {
+    "hnisi-form": "/components/form/hnisi-form",
+    "hnisi-list": "/components/form/hnisi-list",
+    "hnisi-input": "/components/form/hnisi-input"
+  }
+}

@@ -1,0 +1,10 @@
+<!--components/form/hnisi-list.wxml-->
+<view>
+  <view class="weui-cells__title">{{title}}</view>
+  <view class="weui-cells weui-cells_after-title">
+    <slot/>
+  </view>
+  <view class="weui-cells__tips">{{tips}}</view>
+</view>
+
+        

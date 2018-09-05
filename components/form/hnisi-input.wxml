@@ -1,0 +1,14 @@
+<!--components/form/hnisi-input.wxml-->
+<view class="weui-cell weui-cell_input {{(validateStatus===ValidateStatus.ERROR?'weui-cell_warn':'')}}">
+  <view class="weui-cell__hd">
+      <view class="weui-label">{{label}}</view>
+  </view>
+  <view class="weui-cell__bd">
+      <input name="{{name}}" type="{{type}}" class="weui-input" placeholder="{{placeholder}}" value="{{value}}" bindinput="handleInput"/>
+  </view>
+  <view class="weui-cell__ft">
+    <block wx:if="{{validateStatus===ValidateStatus.ERROR}}">
+    <icon type="warn" size="23" color="#E64340"></icon>
+    </block>
+  </view>
+</view>
