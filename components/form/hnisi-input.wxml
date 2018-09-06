@@ -4,7 +4,7 @@
       <view class="weui-label">{{label}}</view>
   </view>
   <view class="weui-cell__bd">
-      <input name="{{name}}" type="{{type}}" class="weui-input" placeholder="{{placeholder}}" value="{{value}}" bindinput="handleInput"/>
+      <input name="{{name}}" type="{{type}}" class="weui-input" placeholder="{{placeholder}}" value="{{value}}" bindinput="handleInput" bindfocus="handleFocus"/>
   </view>
   <view class="weui-cell__ft">
     <block wx:if="{{validateStatus===ValidateStatus.ERROR}}">

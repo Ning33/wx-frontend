@@ -18,7 +18,17 @@ module.exports = Behavior({
       this.setData({
         validateStatus: ValidateStatus.UNSET,
         tips: ''
-      })
+      });
+    },
+
+    noticeForm(eventName,detail) {
+      this.triggerEvent(eventName, detail, {
+        bubbles: true,
+        composed: true,
+      });
     }
+
+    
+
   }
 })

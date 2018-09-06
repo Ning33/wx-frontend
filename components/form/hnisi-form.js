@@ -109,6 +109,11 @@ Component({
         ...validateResult
       })
     },
+    handleHideTips(event){
+      this.setData({
+        isShowTips: false
+      });
+    },
     /**
      * 重置状态
      */

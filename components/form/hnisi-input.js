@@ -42,6 +42,10 @@ Component({
   methods: {
     handleInput(event){
       this.triggerEvent('input',event.detail);
+    },
+    handleFocus(event){
+      this.resetStatus();
+      this.noticeForm('hideTips',this);
     }
   }
 })
