@@ -16,13 +16,13 @@ Page({
 
     },
     rules: {
-      CAC031: [{ validateType: ValidateType.required, tips: '不允许为空' }],
-      CAC542: [{ validateType: ValidateType.required, tips: '不允许为空' }],
-      CIC520: [{ validateType: ValidateType.required, tips: '不允许为空' }],
-      CAC554: [{ validateType: ValidateType.required, tips: '不允许为空' }],
-      AAE005: [{ validateType: ValidateType.required, tips: '不允许为空' }],
-      CAC552: [{ validateType: ValidateType.required, tips: '不允许为空' }],
-      CAC551: [{ validateType: ValidateType.required, tips: '不允许为空' }],
+      CAC031: [ValidateType.required],
+      CAC542: [ValidateType.required],
+      CIC520: [ValidateType.required],
+      CAC554: [ValidateType.required],
+      AAE005: [ValidateType.required],
+      CAC552: [ValidateType.required],
+      CAC551: [ValidateType.required],
     }
   },
 
@@ -67,7 +67,9 @@ Page({
   /**
    * 下一步
    */
-  handleNext(validateResult) {
+  handleNext(event) {
+    const validateResult = event.detail;
+    console.log(validateResult);
     if (validateResult.validateStatus === ValidateStatus.OK) {
       const personId = controller.serviceData.personId;
       //回写申报信息

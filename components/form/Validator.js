@@ -63,7 +63,7 @@ class Validator{
     });
 
     //生成最终的校验结果
-    const isPass = Object.values(detail).some(item=>{
+    const isPass = Object.values(detail).every(item=>{
       if (item.validateStatus === ValidateStatus.ERROR){
         return false;
       }else{

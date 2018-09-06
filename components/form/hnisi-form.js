@@ -25,13 +25,21 @@ Component({
     /**
      * 校验规则
      * {
-     *  field1: [{validateType: func||regexp||string,tips: string},{validateType:'required',tips:'输入不能为空'}],
+     *  field1: [{validateType: func,tips: string},{validateType:ValidateType.required,tips:'输入不能为空'}],
      *  field2: [{}]
      * }
      */
     rules: {
       type: Object,
-      value: {}
+      value: {},
+      observer: function(newVal,oldVal){
+        if(this.isReady){
+          const formatedRules = this.formatRules(newVal);
+          this.setData({
+            formatedRules: formatedRules
+          })
+        }
+      }
     }
   },
 
@@ -41,6 +49,16 @@ Component({
   data: {
     isShowTips: false,
     tips: ''
+  },
+
+  lifetimes: {
+    ready: function(){
+      this.isReady = true;
+      const formatedRules = this.formatRules(this.properties.rules);
+      this.setData({
+        formatedRules: formatedRules
+      })
+    }
   },
 
   /**
@@ -53,7 +71,7 @@ Component({
     handleSubmit(event){
       // 开始校验
       const model = this.properties.model;
-      const rules = this.properties.rules;
+      const rules = this.data.formatedRules;
       const validateResult = Validator.validate(model,rules);
 
       //开始格式化校验校验结果
@@ -91,11 +109,47 @@ Component({
         ...validateResult
       })
     },
+    /**
+     * 重置状态
+     */
     resetStatus() {
       this.setData({
         isShowTips: false,
         tips: ''
       })
+    },
+    /**
+     * 格式化rules
+     */
+    formatRules(rules){
+      const targetRules = {};
+      Object.keys(rules).forEach(field => {
+        const ruleArray = rules[field];
+        targetRules[field] = ruleArray.map(rule => {
+          const targetRule = {};
+          //如果传入为function，则修改为object
+          if (typeof rule === 'function') {
+            targetRule.validateType = rule;
+          }else if(typeof rule === 'object'){
+            Object.assign(targetRule, rule);
+          }
+          //如果未传入tips，则自动生成tips
+          if (targetRule.tips == null) {
+            targetRule.tips = '表单填写有误';//通用的默认错误
+            if (targetRule.validateType === ValidateType.required) {
+              //如果为必录项，则获取字段名称，提示请输入【字段名称】
+              const targetNode = this.getRelationNodes('hnisi-form-field').find(node => {
+                return node.id === field;
+              });
+              const label = targetNode.properties.label;
+              targetRule.tips = '请输入' + label;
+            }
+          }
+          return targetRule;
+        });
+      });
+
+      return targetRules;
     }
   }
 
