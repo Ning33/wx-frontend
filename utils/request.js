@@ -13,7 +13,7 @@ function customRequest(options,retryCnt=1) {
   const defaultOptions = {
     urlPrefix: urlPrefix, 
     needLogin: true,
-    method: 'GET',
+    method: 'POST',
   };
   const customOptions = Object.assign({},defaultOptions,options);
 
