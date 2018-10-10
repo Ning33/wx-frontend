@@ -1,0 +1,9 @@
+.hnisi-picker{
+    display: flex;
+    font-family: "微软雅黑";
+    vertical-align: center;
+    align-items: center;
+    justify-content: space-between;
+    float: right;
+    text-align: right;
+}

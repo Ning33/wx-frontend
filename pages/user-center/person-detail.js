@@ -6,8 +6,50 @@ Page({
    * 页面的初始数据
    */
   data: {
-    personInfo:{}
-  
+    personInfo:{},
+    array:[
+      {
+        dictValue: "0",
+        dictDisplay: "未选择"
+      },
+      {
+        dictValue: "10",
+        dictDisplay: "男"
+      },
+      {
+        dictValue: "20",
+        dictDisplay: "女"
+      }
+    ],
+    value: 0, //字典值
+    index: 0, //下标
+    multValue: [], //多选择数组--字典值
+    multIndex:[0,0],
+    multArray: [
+      [
+        {
+          dictValue: 10,
+          name: '无脊动物'
+        },
+        {
+          dictValue: 11,
+          name: '脊柱动物'
+        }
+      ], [
+        {
+          dictValue: 20,
+          name: '扁性动物'
+        },
+        {
+          dictValue: 21,
+          name: '线形动物'
+        },
+        {
+          dictValue: 22,
+          name: '环节动物'
+        }
+      ]
+    ]
   },
 
   /**
@@ -48,52 +90,19 @@ Page({
     });
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
+  handleChange: function (e) {
+    console.log(e.detail);
+    this.setData({
+      multIndex: e.detail.value,
+     // value: e.detail.dictValue
+    });
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
+  handleTouchCancel: function (e) {
+    console.log(e.detail.value)
+    console.log("已关闭")
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+  handleColumnChange: function (e) {
+    // console.log(e.detail.column);
+    // console.log(e.detail.value);
   }
 })

@@ -1,0 +1,19 @@
+<view class="weui-cell weui-cell_input weui-cell_warn {{(validateStatus===ValidateStatus.ERROR?'weui-cell_warn':'')}}">
+  <view class="weui-cell__hd">
+      <view class="weui-label">{{label}}</view>
+  </view>
+  <view class="weui-cell__bd">
+      <picker mode="{{mode}}" range="{{range}}" value="{{value}}" 
+      range-key="{{rangeKey}}" custom-item="{{customItem}}" bindchange="handleChange"  bindcancel="handleTouchCancel" bindcolumnchange="handleColumnChange">
+        <view class="weui-cell__hd hnisi-picker" >
+          <slot></slot>
+          <image src="/pages/service/navigator-images/u16.png" style="margin-right: 10px; padding-left:8px; width:10px; height: 15px;"></image>
+        </view>
+      </picker>
+  </view>
+  <view class="weui-cell__ft">
+    <block wx:if="{{validateStatus===ValidateStatus.ERROR}}">
+      <icon type="warn" size="23" color="#E64340"></icon>
+    </block>
+  </view>
+</view>

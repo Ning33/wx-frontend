@@ -1,1 +1,5 @@
-{}
+{
+  "usingComponents": {
+    "hnisi-picker": "/components/form/hnisi-picker"
+  }
+}

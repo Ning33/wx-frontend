@@ -24,6 +24,11 @@
       <text>电话号码:</text>
       <text class="letter">{{personInfo.tel}}</text>
     </view>
-
   </view>
+------------------------------------------------------------
+  <hnisi-picker mode="multiSelector" range="{{multArray}}" value="{{multValue}}" label="地区"  range-key="{{'name'}}"
+   bindchange="handleChange" bindcancel="handleTouchCancel" bindcolumnchange="handleColumnChange" >
+      <!-- {{array[index].dictDisplay}} -->
+      {{multArray[0][multIndex[0]].name}} {{multArray[1][multIndex[1]].name}}
+    </hnisi-picker>
 </view>
