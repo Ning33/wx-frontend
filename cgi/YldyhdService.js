@@ -7,7 +7,7 @@ class YldyhdService extends RestService{
    */
   checkIn(personId){
     return this.request({
-      urlPath: '/api/frontend/service/yldyhd/check-in',
+      urlPath: '/api/frontend/service/yldyhd/checkIn',
       data: {
         personId: personId
       }
@@ -19,7 +19,7 @@ class YldyhdService extends RestService{
    */
   queryCbqkqr(personId){
     return this.request({
-        urlPath: '/api/frontend/service/yldyhd/step-cbqkqr-query',
+        urlPath: '/api/frontend/service/yldyhd/cbqkqr',
         data:{
           personId: personId
         }
@@ -31,7 +31,7 @@ class YldyhdService extends RestService{
    */
   queryFfzhqr(personId){
     return this.request({
-      urlPath: '/api/frontend/service/yldyhd/step-ffzhqr-query',
+      urlPath: '/api/frontend/service/yldyhd/ffzhqr',
       data: {
         personId: personId
       }
