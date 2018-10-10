@@ -26,6 +26,9 @@ class ServiceFilter {
  */
 class ValidateFaceFilter extends ServiceFilter {
   doFilter(serviceData){
+    // 开发阶段，屏蔽人脸识别
+    return this.wrapResult(true, serviceData);
+    
     //判断业务中选择的人员是否存在有效的人脸识别
     const {personId,idcard,name} = serviceData;
     const token = StorageUtil.loadValidateFaceToken(idcard);
