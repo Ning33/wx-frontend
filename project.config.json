@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 2,
 			"list": [
 				{
 					"id": 0,
@@ -51,6 +51,13 @@
 					"name": "人脸识别",
 					"pathName": "pages/validate-face/validate-face-result",
 					"query": "isSuccess=true&token={0FE74E28-CE11-4946-9046-264A2B757742}&errcode=0,idcard=420116199011214537&name=杜鹏飞",
+					"scene": "1001"
+				},
+				{
+					"id": 2,
+					"name": "表单demo",
+					"pathName": "pages/demo/form-list",
+					"query": "",
 					"scene": "1001"
 				}
 			]

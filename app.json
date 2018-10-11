@@ -16,7 +16,8 @@
     "pages/service/yldyhd/yldyhd-sbxx",
     "pages/service/yldyhd/yldyhd-ffzhqr",
     "pages/service/yldyhd/yldyhd-cbqkqr",
-    "pages/service/service-result/ServiceResult"
+    "pages/service/service-result/ServiceResult",
+    "pages/demo/form-list"
   ],
   "window": {
     "backgroundTextStyle": "light",

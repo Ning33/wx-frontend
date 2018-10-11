@@ -15,17 +15,33 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    //input类型，text,number,idcard
+    //input类型，text,number,idcard,digit,password
     type: {
       type: String,
-      value: 'text'
+      value: 'text',
+      observer: function (newVal) {
+        if(newVal === 'password'){
+          this.setData({
+            _type: 'text',
+            password: true
+          })
+        }else{
+          this.setData({
+            _type: newVal,
+            password: false
+          })
+        }
+      }
     },
-    name: String,
     label: String,
     value: null,
     placeholder:{
       type: String,
       value: ''
+    },
+    disabled:{
+      type: Boolean,
+      value: false
     }
   },
 

@@ -1,0 +1,17 @@
+<view class="page">
+  <view class="page__bd">
+    <hnisi-form>
+      <view slot="content">
+        <hnisi-list title="头部标题" tips="底部说明">
+          <hnisi-input type="text" label="普通输入框" placeholder="请输入" />
+          <hnisi-input type="number" label="整数输入框" placeholder="请输入整数" />
+          <hnisi-input type="idcard" label="公民身份证号" placeholder="请输入公民身份证号码" />
+          <hnisi-input type="digit" label="小数输入框" placeholder="请输入小数" />
+          <hnisi-input type="password" label="密码输入框" placeholder="请输入密码" />
+          <hnisi-input type="text" label="不可输入" placeholder="不可输入" disabled="true" />
+          <hnisi-input type="text" label="只读" value="不可修改" disabled/>
+        </hnisi-list>
+      </view>
+    </hnisi-form>
+  </view>
+</view>
