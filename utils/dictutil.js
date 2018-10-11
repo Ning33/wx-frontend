@@ -15,11 +15,11 @@ class DictUtil {
 
       if (dict === "" || dict === null){
         dict = {};
-        dict._version = 0;
+        dict._version = '0';
         StorageUtil.save("dict",dict);
       }
       if(dict._version === undefined){
-        dict._version = 0;
+        dict._version = '0';
       }
 
       DictUtil._update(dict._version);
