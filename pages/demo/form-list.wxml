@@ -14,9 +14,9 @@
 
         <hnisi-list title="下拉框">
           <hnisi-picker mode="selector" label="普通下拉框" value="{{selectorPicker.value}}" range="{{selectorPicker.range}}" bindchange="handleSelectorPickerChange">{{selectorPicker.value}}</hnisi-picker>
-          <hnisi-picker mode="selector" dict label="字典下拉框" value="{{selectorDict.value}}" range="{{selectorDict.range}}" bindchange="handleSelectorDictChange">{{selectorDict.value}}</hnisi-picker>
+          <hnisi-picker mode="selector" dict label="字典下拉框" value="{{selectorDict.value}}" range="{{selectorDict.range}}" bindchange="handleSelectorDictChange"><hnisi-dict name="sex" value="{{selectorDict.value}}"/></hnisi-picker>
           <hnisi-picker mode="multiSelector" label="级联下拉框" value="{{multiSelectorPicker.value}}" range="{{multiSelectorPicker.range}}" bindchange="handleMultiSelectorPickerChange" bindcolumnchange="handleMultiSelectorPickerColumnchange">{{multiSelectorPicker.value[0]}}|{{multiSelectorPicker.value[1]}}</hnisi-picker>
-          <hnisi-picker mode="multiSelector" dict label="级联字典框" value="{{multiSelectorDict.value}}" range="{{multiSelectorDict.range}}" bindchange="handleMultiSelectorDictChange" bindcolumnchange="handleMultiSelectorDictColumnchange">{{multiSelectorDict.value[0]}}|{{multiSelectorDict.value[1]}}</hnisi-picker>
+          <hnisi-picker mode="multiSelector" dict label="级联字典框" value="{{multiSelectorDict.value}}" range="{{multiSelectorDict.range}}" bindchange="handleMultiSelectorDictChange" bindcolumnchange="handleMultiSelectorDictColumnchange"><hnisi-dict name="region" value="{{multiSelectorDict.value[0]}}" />|<hnisi-dict name="sex" value="{{multiSelectorDict.value[1]}}" /></hnisi-picker>
         </hnisi-list>
       </view>
     </hnisi-form>
