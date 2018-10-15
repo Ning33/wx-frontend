@@ -44,19 +44,15 @@ class DictUtil {
     //获取字典
     let dict = StorageUtil.load("dict");
     //获取字段对应的字典项
-    let fields = dict[field];
-    let arr = [];
-    if (fields._version !== undefined){
-      delete fields._version; 
-    }
-    //循环遍历
-    for(let i in fields){
-      //声明一个对象
-      let tem = {};
-      tem[i] = fields[i];
-      arr.push(tem);
-    }
-    return arr;
+    const fields = dict[field];
+    return Object.keys(fields).filter((dictValue)=>{
+      return dictValue !== '_version'
+    }).map((dictValue)=>{
+      return {
+        dictValue: dictValue,
+        dictDisplay: fields[dictValue],
+      }
+    });
   }
   /**
    * 更新字典配置操作

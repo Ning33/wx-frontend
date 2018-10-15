@@ -1,137 +1,190 @@
 const formValidateBehavior = require('./behaviors/form-validate.js');
-const { DictUtil } = require('../../utils/index.js');
+
 Component({
 
-    /**
-     * 组件选项
-     */
-    options: {
-        addGlobalClass: true  //全局样式
+  options: {
+    addGlobalClass: true
+  },
+  behaviors: [formValidateBehavior],
+  relations: {
+    './hnisi-form': {
+      type: 'ancestor'
+    }
+  },
+
+  /**
+   * 组件的属性列表
+   */
+  properties: {
+    mode: { //模式: 普通选择器(selector), 日期(time), 地区(region)
+      type: String,
+      value: 'selector'
     },
-
-    /**
-     * 统一行为
-     */
-    behavior: [formValidateBehavior],
-
-    /**
-     * 组件的属性列表
-     */
-    properties: {
-        mode: {       //模式: 普通选择器(selector), 日期(time), 地区(region)
-            type: String,
-            value: 'selector'
-        },
-        range: {      //获取数组
-            type: Array,
-            value: ''
-        },
-        rangeKey: {    //当 range 是一个 二维Object Array 时，通过 range - key 来指定 Object 中 key 的值作为选择器显示内容
-            type: String,
-            value:''
-        },
-        value: {       //外界传入值
-            type: String,
-            value: ''
-        },
-        index: {       //下标值
-            type: Number,
-            value: 0
-        },  
-        label: String,  //标签
-        start: String,  //为时间选择器时-开始时间
-        end: String,    //为时间选择器时-结束时间
-        customItem: {   //为地区选择器时,可为每一列的顶部添加一个自定义的项
-          type: String,
-          value: ""
-        },  
+    range: { //获取数组
+      type: Array,
+      value: []
     },
-    /**
-     * 组件生命周期
-     */
-    lifetimes:{
-      ready: function(){
-      }
+    rangeKey: { //当 range 是一个 二维Object Array 时，通过 range - key 来指定 Object 中 key 的值作为选择器显示内容
+      type: [String],
+      value: 'dictDisplay'
     },
-
-    /**
-     * 组件的初始数据
-     */
-    data: {
-        range: {},  //数组
-        value: '0', //外界传入值
-        index: 0,   //下标值
-        label: "",  //标签
-        rangeKey: "", //Object数组时 显示值
+    rangeValue: {
+      type: [String],
+      value: 'dictValue'
     },
-
-    /**
-     * 组件的方法列表
-     */
-    methods: {
-
-        handleChange(event) {    //value(数组下标值) 改变时触发 change 事件
-          //获取选择器模式
-          const _mode = this.data.mode;
-
-          switch (_mode){
-            case "selector":{ //单项普通选择器
-              //实例化字典数组
-              let arr = this._init();
-              //获取字典数值
-              let dictValue;
-              //判断用户是否选择
-              if (event.detail.value == 0) {
-                console.log("用户未选择");
-                dictValue = "0";
+    dict: {
+      type: Boolean,
+      value: false
+    },
+    value: { //外界传入值
+      type: [String, Array],
+      value: '',
+      observer: function(value) {
+        const mode = this.properties.mode;
+        switch (mode) {
+          case 'selector':
+            {
+              // value有值
+              if (typeof value === 'string' && value !== '') {
+                // 查找value对应的index
+                this.setData({
+                  index: this.findIndex(value,this.properties.range,this.properties.rangeValue),
+                  showPlaceholder: false
+                });
               } else {
-                //获取字典数值
-                dictValue = Object.keys(arr[event.detail.value - 1])[0];
-
+                // value无值，index设置为第一个
+                this.setData({
+                  index: 0,
+                  showPlaceholder: true
+                })
               }
-              //赋值,输出
-              event.detail.dictValue = dictValue;
-              this.triggerEvent('change', event.detail);
               break;
             }
-            case "multiSelector":{ //多列选择器
-              //获取数组
-              let arr = this.data.range;
-              //定义返回value
-              let dictValue = [];
-                for(let i=0; i<arr.length; i++){
-                    //获取 字典值的 key
-                    let dictKey =  Object.keys(arr[i][event.detail.value[i]])[0];
-                    //获取字典值
-                    dictValue[i] = arr[i][event.detail.value[i]][dictKey];
-                }
-              event.detail.dictValue = dictValue;
-              this.triggerEvent('change', event.detail);
+          case 'multiSelector':{
+            if(value instanceof Array && value.length > 0){
+              const valueArray = value;
+              const indexArray = valueArray.map((item,index)=>{
+                return this.findIndex(item,this.properties.range[index],this.properties.rangeValue);
+              });
+              this.setData({
+                index: indexArray,
+                showPlaceholder: false
+              })
+            }else{
+              this.setData({
+                index: [0,0],
+                showPlaceholder: true
+              })
             }
+            break;
           }
-          
-        },
-        /**
-         * 取消选择或点遮罩层收起 picker 时触发
-         */
-        handleTouchCancel(event) {    
-          this.triggerEvent('cancel' , event.detail);
-        },
-        /**
-         * 某一列的值改变时触发 columnchange 事件
-         */
-        handleColumnChange(event) {    
-          this.triggerEvent('columnchange', event.detail);
-        },
-      /**
-        * 初始化普通选择器 -- 字典数组
-        */
-        _init: function () {
-          let that = this;
-          //根据字段获取字典数组
-          let label = that.data.label;
-          let arr = DictUtil.getItems(label);
-          return arr;
         }
+      }
+    },
+    label: String, //标签
+    placeholder: {
+      type: String,
+      value: '请选择'
+    },
+    start: String, //为时间选择器时-开始时间
+    end: String, //为时间选择器时-结束时间
+    customItem: { //为地区选择器时,可为每一列的顶部添加一个自定义的项
+      type: String,
+      value: ""
+    },
+  },
+
+  /**
+   * 组件的初始数据
+   */
+  data: {
+    index: 0,   //下标值
+    showPlaceholder: true
+  },
+
+  /**
+   * 组件生命周期
+   */
+  lifetimes: {
+    created: function(){
+    },
+    ready: function() {
     }
+  },
+
+  /**
+   * 组件的方法列表
+   */
+  methods: {
+
+    handleChange(event) { //value(数组下标值) 改变时触发 change 事件
+      //获取选择器模式
+      const mode = this.properties.mode;
+
+      switch (mode) {
+        case "selector":
+          { //单项选择器
+            const index = event.detail.value;
+            this.triggerEvent('change', {
+              value: this.findValue(index,this.properties.range,this.properties.rangeValue)
+            });
+            break;
+          }
+        case "multiSelector":
+          { //多列选择器
+            const indexArray = event.detail.value;
+            const valueArray = indexArray.map((index,i)=>{
+              return this.findValue(index,this.properties.range[i],this.properties.rangeValue);
+            });
+            this.triggerEvent('change',{
+              value: valueArray
+            });
+            break;
+          }
+      }
+
+    },
+    /**
+     * 取消选择或点遮罩层收起 picker 时触发
+     */
+    handleCancel(event) {
+      this.triggerEvent('cancel', event.detail);
+    },
+    /**
+     * 某一列的值改变时触发 columnchange 事件
+     */
+    handleColumnChange(event) {
+      const {column,value:index} = event.detail;
+      this.triggerEvent('columnchange', {
+        column: column,
+        value: this.findValue(index, this.properties.range[column], this.properties.rangeValue)
+      });
+    },
+    /**
+     * 查找数组
+     * 根据值找到对应的序列
+     */
+    findIndex(value,range,rangeValue){
+      return range.findIndex((rangeItem) => {
+        if (typeof rangeItem === 'string') {
+          return rangeItem === value;
+        } else if (typeof rangeItem === 'object') {
+          return rangeItem[rangeValue] === value;
+        } else {
+          throw new Error('range传入格式有误');
+        }
+      });
+    },
+    /**
+     * 
+     */
+    findValue(index,range,rangeValue){
+      const targetRangeItem = range[index];
+      if (typeof targetRangeItem === 'object' && targetRangeItem != null) {
+        return targetRangeItem[rangeValue];
+      } else if (typeof targetRangeItem === 'string') {
+        return targetRangeItem;
+      }
+    }
+  }
 })

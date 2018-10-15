@@ -1,19 +1,15 @@
-<view class="weui-cell weui-cell_input weui-cell_warn {{(validateStatus===ValidateStatus.ERROR?'weui-cell_warn':'')}}">
-  <view class="weui-cell__hd">
-      <view class="weui-label">{{label}}</view>
+<view class="weui-cell weui-cell_select {{(validateStatus===ValidateStatus.ERROR?'weui-cell_warn':'')}}">
+  <view class="weui-cell__hd weui-cell__hd_in-select-after">
+    <view class="weui-label">{{label}}</view>
   </view>
   <view class="weui-cell__bd">
-      <picker mode="{{mode}}" range="{{range}}" value="{{value}}" 
-      range-key="{{rangeKey}}" custom-item="{{customItem}}" bindchange="handleChange"  bindcancel="handleTouchCancel" bindcolumnchange="handleColumnChange">
-        <view class="weui-cell__hd hnisi-picker" >
-          <slot></slot>
-          <image src="/pages/service/navigator-images/u16.png" style="margin-right: 10px; padding-left:8px; width:10px; height: 15px;"></image>
-        </view>
-      </picker>
-  </view>
-  <view class="weui-cell__ft">
-    <block wx:if="{{validateStatus===ValidateStatus.ERROR}}">
-      <icon type="warn" size="23" color="#E64340"></icon>
-    </block>
+    <picker mode="{{mode}}" range="{{range}}" value="{{index}}" range-key="{{dict?rangeKey:''}}" custom-item="{{customItem}}" bindchange="handleChange" bindcancel="handleCancel" bindcolumnchange="handleColumnChange">
+      <view wx:if="{{!showPlaceholder}}" class="weui-select weui-select_in-select-after">
+        <slot></slot>
+      </view>
+      <view wx:else class="weui-select weui-select_in-select-after">
+        {{placeholder}}
+      </view>
+    </picker>
   </view>
 </view>

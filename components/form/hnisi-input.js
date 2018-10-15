@@ -53,6 +53,15 @@ Component({
   },
 
   /**
+     * 组件生命周期
+     */
+  lifetimes: {
+    ready: function () {
+      
+    }
+  },
+
+  /**
    * 组件的方法列表
    */
   methods: {
