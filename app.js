@@ -3,11 +3,16 @@ const {request} = require('./utils/index.js');
 const {login} = require('./utils/request.js');
 const {validateFace:validateFaceConfig} = require('./constant/config.js');
 const { getController } = require('./pages/service/utils/controllers.js');
-
+const { DictUtil,StorageUtil } = require('./utils/index.js')
 App({
   onLaunch: function(){
     // debug使用，正式发布版本不需要
     this.getController = getController;
+    
+    // 初始化app
+    StorageUtil.setApp(this);
+    //更新字典配置
+    DictUtil.update();
   },
   onShow: function(options){
     console.log('app.onShow:', options);
