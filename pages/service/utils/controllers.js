@@ -1,7 +1,9 @@
 const YldyhdController = require('../yldyhd/YldyhdController.js');
+const GrsfjyController = require('../grsfjy/GrsfjyController.js');
 
 const controllers = {
-  yldyhdController: new YldyhdController()
+  yldyhdController: new YldyhdController(),
+  grsfjyController: new GrsfjyController()
 }
 
 function getController(serviceName){

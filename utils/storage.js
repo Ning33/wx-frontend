@@ -2,10 +2,19 @@
 const USER_INFO = "userInfo";
 const VALIDATE_FACE_TOKENS = "validateFaceTokens";
 
+function getApp(){
+  return StorageUtil.app;
+}
+
 /**
  * 存储工具类
  */
 class StorageUtil {
+  
+  static app;
+  static setApp(app) {
+    StorageUtil.app = app;
+  }
 
   /**
    * 保存用户信息
