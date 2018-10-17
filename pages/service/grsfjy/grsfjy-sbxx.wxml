@@ -1,0 +1,17 @@
+<!--pages/service/grsfjy/grsfjy-sbxx.wxml-->
+<view class="page">
+  <view class="page__bd">
+    <hnisi-form model="{{sbxx}}" rules="{{rules}}" bindsubmit="handleNext">
+      <view slot="content">
+        <hnisi-list title="申请人信息">
+          <hnisi-input id="AAC003" label="姓名" value="{{sbxx.AAC003}}" disabled="true" />
+          <hnisi-input id="AAC002" label="公民身份号码" value="{{sbxx.AAC002}}" disabled="true" />
+          <hnisi-input id="AAC004" label="性别" value="{{sbxx.AAC004}}" disabled="true" />
+          <hnisi-input id="AAC006" label="出生日期" value="{{sbxx.AAC006}}" disabled="true" />
+        </hnisi-list>
+        <hnisi-list title="申报信息">
+        </hnisi-list>
+      </view>
+    </hnisi-form>
+  </view>
+</view>

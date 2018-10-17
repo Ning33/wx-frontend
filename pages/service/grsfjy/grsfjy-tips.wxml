@@ -1,0 +1,9 @@
+<!--pages/service/grsfjy/grsfjy-tips.wxml-->
+
+<view class="page">
+  <view class="page__bd">
+    <view class="weui-btn-area">
+      <button class="weui-btn" type="primary" bindtap="handleNext">已阅须知</button>
+    </view>
+  </view>
+</view>
